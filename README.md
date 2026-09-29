@@ -184,3 +184,5 @@ python test_system_qa.py
 8. **Reversible Interventions & "Show Me Why" Auditability**:
    - Open **Interventions**. View proposed pilot `I-01` (*Expand advanced CNC training capacity*). Click **Mark for review** to demonstrate real-time database state persistence.
    - Click **Show me why** on any card to inspect the multi-step evidentiary lineage from raw observation to decision gate.
+#   S K I L L P U L S E  
+ 
