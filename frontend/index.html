@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillPulse | Evidence-to-Action Intelligence Layer for Continuous Skill Planning">
+    <title>SkillPulse | Evidence-to-Action Intelligence Layer</title>
+    
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- 1. NAVIGATION -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">⚡ SKILLPULSE</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#student-guidance">Student View</a>
+                <a href="#mismatch-breakdown">Alignment</a>
+                <a href="#skillness-gate">Intelligence</a>
+                <a href="#economic-corridors">Corridors</a>
+                <a href="#interventions-lifecycle">Interventions</a>
+                <a href="#clean-taxonomy">Taxonomy</a>
+                <a href="javascript:void(0)" onclick="openAuditDrawer('cnc')">Show Me Why</a>
+                <a href="#live-api">Live API</a>
+            </div>
+            <div class="nav-right-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. SCROLL PROGRESS BAR -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- 3. HERO SECTION -->
+    <section class="hero" id="home">
+        <canvas id="particles-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge animate-on-scroll">🚀 Team Veyronix • PS 134 Ecosystem Alignment</div>
+            <h1 class="hero-title">
+                <span class="typewriter-text" data-texts='["SKILLPULSE", "Evidence-to-Action", "Intelligence Layer"]'>SKILLPULSE</span>
+            </h1>
+            <p class="hero-tagline animate-on-scroll">Continuous Observability for Vocational & Labour-Market Planning</p>
+            <p class="hero-subtitle animate-on-scroll">
+                Reconciling fragmented industry, labour-market, training, and outcome evidence into auditable, measurable, and reversible skill-development interventions.
+            </p>
+            <div class="hero-buttons animate-on-scroll">
+                <a href="#student-guidance" class="btn-primary"><i class="fas fa-user-graduate"></i> Student Guidance View</a>
+                <a href="#mismatch-breakdown" class="btn-secondary"><i class="fas fa-sliders-h"></i> 4-Way Mismatch Simulator</a>
+                <a href="#showmewhy" class="btn-secondary" onclick="openAuditDrawer('cnc')"><i class="fas fa-search-plus"></i> Open Audit Drawer</a>
+            </div>
+            <div class="hero-flow animate-on-scroll">
+                <span class="flow-tag">EVIDENCE</span>
+                <i class="fas fa-arrow-right flow-arrow-icon"></i>
+                <span class="flow-tag">INTELLIGENCE</span>
+                <i class="fas fa-arrow-right flow-arrow-icon"></i>
+                <span class="flow-tag">ALIGNMENT</span>
+                <i class="fas fa-arrow-right flow-arrow-icon"></i>
+                <span class="flow-tag">ACTION</span>
+                <i class="fas fa-arrow-right flow-arrow-icon"></i>
+                <span class="flow-tag">FEEDBACK</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <h2 class="section-title">What is SkillPulse?</h2>
+                <p class="section-subtitle">A different question from a conventional reporting dashboard</p>
+            </div>
+            
+            <div class="grid-2">
+                <div class="about-text animate-on-scroll stagger-1 glow-card" data-accent="blue">
+                    <div class="card-icon" style="color: var(--neon-cyan);"><i class="fas fa-question-circle"></i></div>
+                    <h3>The Core SkillPulse Question</h3>
+                    <p>SkillPulse asks: <strong>'What does the combined evidence imply for training-system decisions, where is the uncertainty, and why?'</strong></p>
+                    <p>Problem: Industry requirements evolve faster than training systems can adapt. Traditional courses continue teaching legacy skills while employers request newer competencies.</p>
+                    <p>PS 134 represents a continuous alignment bridge between <strong>Industry, Training Institutes (ITIs/Polytechnics), Government Planners, and Candidates</strong>.</p>
+                </div>
+                
+                <div class="about-not animate-on-scroll stagger-2 glow-card" data-accent="pink">
+                    <div class="card-icon" style="color: var(--neon-pink);"><i class="fas fa-shield-alt"></i></div>
+                    <h3>What SkillPulse is NOT</h3>
+                    <ul style="list-style: none; padding-top: 5px;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-times text-danger mr-2" style="color: var(--neon-pink);"></i> Not a standard job portal or recruitment site</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-times text-danger mr-2" style="color: var(--neon-pink);"></i> Not a generic static LMIS report</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-times text-danger mr-2" style="color: var(--neon-pink);"></i> Not a conversational chatbot guessing answers</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-times text-danger mr-2" style="color: var(--neon-pink);"></i> Not an autonomous policymaker replacing human leadership</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-times text-danger mr-2" style="color: var(--neon-pink);"></i> Not an unexplainable AI black-box system</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ARCHITECTURE SECTION (10 COLOR-CODED MODULES & 5 PILLARS FROM REFERENCE POSTER) -->
+    <section class="section" id="architecture">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <h2 class="section-title">The 10-Layer Architecture</h2>
+                <p class="section-subtitle">Evidence-to-action intelligence pipeline — 10 distinct, color-coded, auditable modules</p>
+            </div>
+
+            <!-- 10-MODULE POSTER GRID -->
+            <div class="smart-poster-grid">
+                <!-- Module 1 -->
+                <div class="smart-module blue glow-card animate-on-scroll stagger-1" data-accent="blue">
+                    <div class="module-header">
+                        <div class="module-badge">1</div>
+                        <div class="module-title">EVIDENCE INGESTION</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-blue);"><i class="fas fa-satellite-dish"></i></div>
+                    <ul class="module-list">
+                        <li>Labour-market job postings</li>
+                        <li>Public employment portals</li>
+                        <li>Direct employer surveys</li>
+                        <li>Training capacity records</li>
+                        <li>Placement & tracer data</li>
+                    </ul>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="smart-module green glow-card animate-on-scroll stagger-2" data-accent="green">
+                    <div class="module-header">
+                        <div class="module-badge">2</div>
+                        <div class="module-title">DATA QUALITY & PROVENANCE</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-green);"><i class="fas fa-shield-alt"></i></div>
+                    <ul class="module-list">
+                        <li>Freshness tracking & decay</li>
+                        <li>Source origin audit trail</li>
+                        <li>Geographic precision tags</li>
+                        <li>Candidate privacy & consent</li>
+                        <li>SHOW ME WHY trace paths</li>
+                    </ul>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="smart-module purple glow-card animate-on-scroll stagger-3" data-accent="purple">
+                    <div class="module-header">
+                        <div class="module-badge">3</div>
+                        <div class="module-title">ENTITY RESOLUTION</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-purple);"><i class="fas fa-project-diagram"></i></div>
+                    <ul class="module-list">
+                        <li>Canonical skill taxonomy</li>
+                        <li>Job title normalization</li>
+                        <li>Course & syllabus mapping</li>
+                        <li>Reversible interpretations</li>
+                        <li>Human-validated aliases</li>
+                    </ul>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="smart-module yellow glow-card animate-on-scroll stagger-4" data-accent="yellow">
+                    <div class="module-header">
+                        <div class="module-badge">4</div>
+                        <div class="module-title">MULTILINGUAL INTELLIGENCE</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-yellow);"><i class="fas fa-language"></i></div>
+                    <ul class="module-list">
+                        <li>English, Hindi, Marathi</li>
+                        <li>Hinglish / Maranglish terms</li>
+                        <li>Phonetic transliteration</li>
+                        <li>Informal shopfloor lingo</li>
+                        <li>Uncertainty review routing</li>
+                    </ul>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="smart-module cyan glow-card animate-on-scroll stagger-5" data-accent="cyan">
+                    <div class="module-header">
+                        <div class="module-badge">5</div>
+                        <div class="module-title">MARKET INTELLIGENCE</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-cyan);"><i class="fas fa-search-dollar"></i></div>
+                    <ul class="module-list">
+                        <li>Real-time demand signals</li>
+                        <li>Trend acceleration rates</li>
+                        <li>Observability vs reality</li>
+                        <li>Multi-source signal fusion</li>
+                        <li>Confidence score bounds</li>
+                    </ul>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="smart-module pink glow-card animate-on-scroll stagger-1" data-accent="pink">
+                    <div class="module-header">
+                        <div class="module-badge">6</div>
+                        <div class="module-title">SUPPLY & OUTCOMES</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-pink);"><i class="fas fa-chart-pie"></i></div>
+                    <ul class="module-list">
+                        <li>Nominal vs effective supply</li>
+                        <li>3, 6, 12-month tracers</li>
+                        <li>Missing ≠ Failure audit</li>
+                        <li>In-sector retention rate</li>
+                        <li>Cross-domain leakage</li>
+                    </ul>
+                </div>
+
+                <!-- Module 7 -->
+                <div class="smart-module gold glow-card animate-on-scroll stagger-2" data-accent="yellow">
+                    <div class="module-header">
+                        <div class="module-badge">7</div>
+                        <div class="module-title">EMERGING SKILLS</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-gold);"><i class="fas fa-lightbulb"></i></div>
+                    <ul class="module-list">
+                        <li>Skillness Gate evaluation</li>
+                        <li>Buzzword vs skill filter</li>
+                        <li>Unknown competency tags</li>
+                        <li>5-Pillar threshold check</li>
+                        <li>Cross-employer persistence</li>
+                    </ul>
+                </div>
+
+                <!-- Module 8 -->
+                <div class="smart-module sky glow-card animate-on-scroll stagger-3" data-accent="blue">
+                    <div class="module-header">
+                        <div class="module-badge">8</div>
+                        <div class="module-title">LABOUR GEOGRAPHY</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-sky);"><i class="fas fa-map-marked-alt"></i></div>
+                    <ul class="module-list">
+                        <li>Economic travel sheds</li>
+                        <li>Cross-boundary corridors</li>
+                        <li>Industrial cluster density</li>
+                        <li>Spatial Mismatch Index</li>
+                        <li>Transit feeder planning</li>
+                    </ul>
+                </div>
+
+                <!-- Module 9 -->
+                <div class="smart-module lime glow-card animate-on-scroll stagger-4" data-accent="green">
+                    <div class="module-header">
+                        <div class="module-badge">9</div>
+                        <div class="module-title">ALIGNMENT ENGINE</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-lime);"><i class="fas fa-balance-scale"></i></div>
+                    <ul class="module-list">
+                        <li>Industry ↔ Curriculum gap</li>
+                        <li>Trainer competency audit</li>
+                        <li>Lab equipment status</li>
+                        <li>Training seat capacity</li>
+                        <li>Decision action packets</li>
+                    </ul>
+                </div>
+
+                <!-- Module 10 -->
+                <div class="smart-module violet glow-card animate-on-scroll stagger-5" data-accent="purple">
+                    <div class="module-header">
+                        <div class="module-badge">10</div>
+                        <div class="module-title">OUTCOME FEEDBACK</div>
+                    </div>
+                    <div class="module-center-icon" style="color: var(--neon-violet);"><i class="fas fa-rocket"></i></div>
+                    <ul class="module-list">
+                        <li>Reversible policy actions</li>
+                        <li>Defined review horizons</li>
+                        <li>Observed vs target metric</li>
+                        <li>Next cycle model learning</li>
+                        <li>Continuous resilience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5 BOTTOM HIGHLIGHT PILLARS -->
+            <div class="poster-pillars-grid animate-on-scroll">
+                <div class="pillar-box glow-card blue" data-accent="blue">
+                    <div class="pillar-icon"><i class="fas fa-users-cog"></i></div>
+                    <h4>EVIDENCE FUSION</h4>
+                    <p>Open and accountable multi-source truth across all datasets.</p>
+                </div>
+                <div class="pillar-box glow-card green" data-accent="green">
+                    <div class="pillar-icon"><i class="fas fa-user-shield"></i></div>
+                    <h4>SECURE & AUDITABLE</h4>
+                    <p>Cryptographic provenance with explainable Show Me Why trails.</p>
+                </div>
+                <div class="pillar-box glow-card purple" data-accent="purple">
+                    <div class="pillar-icon"><i class="fas fa-history"></i></div>
+                    <h4>REVERSIBLE ACTIONS</h4>
+                    <p>Simplifying planning while safeguarding public training resources.</p>
+                </div>
+                <div class="pillar-box glow-card yellow" data-accent="yellow">
+                    <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>DATA DRIVEN DECISIONS</h4>
+                    <p>Smart multi-dimensional insights across curriculum, labs & trainers.</p>
+                </div>
+                <div class="pillar-box glow-card cyan" data-accent="cyan">
+                    <div class="pillar-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>EMPOWERING ECOSYSTEM</h4>
+                    <p>Candidates, industry partners, educators, and policy planners united.</p>
+                </div>
+            </div>
+
+            <div class="text-center my-4 animate-on-scroll">
+                <p style="font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: #fff;">
+                    <span style="color: var(--neon-cyan);">EVIDENCE TODAY,</span> <span style="color: var(--neon-purple);">RESILIENT WORKFORCE TOMORROW.</span>
+                </p>
+                <a href="pages/architecture.html" class="btn-secondary mt-2"><i class="fas fa-layer-group mr-2"></i> Explore Deep Dive Architecture Page →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CORE VIEW 1: STUDENT GUIDANCE VIEW (INTERACTIVE DASHBOARD) -->
+    <section class="section" id="student-guidance">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-user-graduate mr-1"></i> Candidate Downstream Application</div>
+                <h2 class="section-title">Student Guidance View</h2>
+                <p class="section-subtitle">Personal skill pathways and career roadmaps powered by validated labor market intelligence</p>
+            </div>
+
+            <div class="student-card glow-card cyan animate-on-scroll" data-accent="cyan">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap" style="gap: 15px;">
+                    <div>
+                        <h3 class="gradient-text mb-1" style="font-size: 1.35rem;"><i class="fas fa-id-card mr-2"></i> Candidate Profile & Pathway Navigator</h3>
+                        <p class="text-secondary small mb-0">Select candidate background to inspect verified gap analysis & career progression:</p>
+                    </div>
+                    <div>
+                        <select id="studentProfileSelect" class="chip" style="background: #061026; color: var(--neon-cyan); border: 1.5px solid var(--neon-cyan); padding: 8px 14px; font-size: 0.88rem; cursor: pointer;">
+                            <option value="machinist">Rahul Sharma (ITI Machinist, Pune)</option>
+                            <option value="electronics">Priya Patil (Diploma Electronics, Nagpur)</option>
+                            <option value="it">Amit Deshmukh (COPA Tech, Nashik)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-4">
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px;">
+                        <span class="text-muted small">Candidate Name & Cohort</span>
+                        <h4 id="studName" class="text-white mt-1 mb-0 font-weight-bold">Rahul Sharma</h4>
+                        <span id="studYear" class="text-secondary small">2nd Year ITI Machinist, Pune Cluster</span>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px;">
+                        <span class="text-muted small">Target Career Goal</span>
+                        <h4 id="studTargetRole" class="text-cyan mt-1 mb-0 font-weight-bold">Senior 5-Axis CNC Programmer</h4>
+                        <span class="chip" style="background: rgba(0,240,255,0.12); color: var(--neon-cyan); margin-top: 4px;">High Market Demand</span>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px;">
+                        <span class="text-muted small">Target Compensation Band</span>
+                        <h4 id="studSalary" class="text-green mt-1 mb-0 font-weight-bold">₹32,000 - ₹38,000 / mo</h4>
+                        <span class="text-muted small">+45% wage premium over basic operator</span>
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-4">
+                    <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h5 class="text-green font-weight-bold mb-2"><i class="fas fa-check-circle mr-1"></i> Observed Current Competencies</h5>
+                        <div id="studCurrentSkills" class="d-flex flex-wrap gap-1"></div>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h5 class="text-pink font-weight-bold mb-2"><i class="fas fa-exclamation-triangle mr-1"></i> Market-Identified Skill Gaps</h5>
+                        <div id="studGapSkills" class="d-flex flex-wrap gap-1"></div>
+                    </div>
+                </div>
+
+                <div class="p-4" style="background: #030816; border-radius: 12px; border: 1.5px solid var(--border-color);">
+                    <h5 class="text-white font-weight-bold mb-3"><i class="fas fa-route mr-2 text-cyan"></i> Step-by-Step Evidence-Backed Pathway Roadmap</h5>
+                    <div id="studPathwaySteps"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CORE VIEW 2: 4-WAY MISMATCH BREAKDOWN & SIMULATOR -->
+    <section class="section" id="mismatch-breakdown">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-sliders-h mr-1"></i> Bottleneck Isolation</div>
+                <h2 class="section-title">4-Way Mismatch Breakdown</h2>
+                <p class="section-subtitle">Isolating skill gaps into four specific operational bottlenecks</p>
+            </div>
+
+            <div class="mismatch-grid mb-4">
+                <!-- Bottleneck 1: Curriculum -->
+                <div class="bot-card curr glow-card animate-on-scroll stagger-1" data-accent="yellow">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge" style="background: rgba(255,183,3,0.15); color: var(--neon-yellow); border: 1px solid var(--neon-yellow);">BOTTLENECK 1</span>
+                        <i class="fas fa-book-open text-yellow"></i>
+                    </div>
+                    <h4 class="font-weight-bold text-white mb-1">Curriculum Mismatch</h4>
+                    <p class="small text-secondary mb-2">Syllabus lacks recent industry modules (e.g. 5-Axis G-Codes, CAN Bus, Predictive Analytics).</p>
+                    <div class="p-2" style="background: rgba(0,0,0,0.3); border-radius: 6px;">
+                        <span class="small text-muted">Current Gap:</span>
+                        <strong id="gapCurrValue" class="text-yellow d-block font-weight-bold">40% Deficit</strong>
+                    </div>
+                </div>
+
+                <!-- Bottleneck 2: Seat Capacity -->
+                <div class="bot-card cap glow-card animate-on-scroll stagger-2" data-accent="pink">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge" style="background: rgba(255,0,127,0.15); color: var(--neon-pink); border: 1px solid var(--neon-pink);">BOTTLENECK 2</span>
+                        <i class="fas fa-users text-pink"></i>
+                    </div>
+                    <h4 class="font-weight-bold text-white mb-1">Seat Capacity Deficit</h4>
+                    <p class="small text-secondary mb-2">Regional ITI student intake capacity is insufficient to meet cluster hiring volume.</p>
+                    <div class="p-2" style="background: rgba(0,0,0,0.3); border-radius: 6px;">
+                        <span class="small text-muted">Current Gap:</span>
+                        <strong id="gapCapValue" class="text-pink d-block font-weight-bold">35% Capacity Strain</strong>
+                    </div>
+                </div>
+
+                <!-- Bottleneck 3: Trainer Readiness -->
+                <div class="bot-card train glow-card animate-on-scroll stagger-3" data-accent="purple">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge" style="background: rgba(168,85,247,0.15); color: var(--neon-purple); border: 1px solid var(--neon-purple);">BOTTLENECK 3</span>
+                        <i class="fas fa-chalkboard-teacher text-purple"></i>
+                    </div>
+                    <h4 class="font-weight-bold text-white mb-1">Trainer Readiness Deficit</h4>
+                    <p class="small text-secondary mb-2">Instructors lack industry certifications on newest machinery and software standards.</p>
+                    <div class="p-2" style="background: rgba(0,0,0,0.3); border-radius: 6px;">
+                        <span class="small text-muted">Current Gap:</span>
+                        <strong id="gapTrainValue" class="text-purple d-block font-weight-bold">45% Deficit</strong>
+                    </div>
+                </div>
+
+                <!-- Bottleneck 4: Lab Equipment -->
+                <div class="bot-card equip glow-card animate-on-scroll stagger-4" data-accent="cyan">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge" style="background: rgba(0,240,255,0.15); color: var(--neon-cyan); border: 1px solid var(--neon-cyan);">BOTTLENECK 4</span>
+                        <i class="fas fa-cogs text-cyan"></i>
+                    </div>
+                    <h4 class="font-weight-bold text-white mb-1">Lab Equipment Readiness</h4>
+                    <p class="small text-secondary mb-2">Practical machine tools and simulation labs are outdated or unserviced.</p>
+                    <div class="p-2" style="background: rgba(0,0,0,0.3); border-radius: 6px;">
+                        <span class="small text-muted">Current Gap:</span>
+                        <strong id="gapEquipValue" class="text-cyan d-block font-weight-bold">25% Deficit</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Simulator Control Panel -->
+            <div class="glow-card green animate-on-scroll" data-accent="green">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                    <div>
+                        <h4 class="text-white font-weight-bold mb-1"><i class="fas fa-sliders-h mr-2 text-green"></i> Interactive Sensitivity Simulator</h4>
+                        <p class="text-secondary small mb-0">Adjust parameters to see real-time bottleneck shifts and recommended action:</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openAuditDrawer('cnc')" style="padding: 8px 18px; font-size: 0.85rem;"><i class="fas fa-search-plus mr-1"></i> View Full Audit Trail</button>
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 10px;">
+                        <div class="d-flex justify-content-between mb-1">
+                            <label class="small font-weight-bold"><i class="fas fa-industry text-cyan mr-1"></i> Industry Requirement Demand:</label>
+                            <span id="simReqVal" class="mono-text text-cyan">85%</span>
+                        </div>
+                        <input type="range" id="simReq" min="10" max="100" value="85" style="width: 100%; accent-color: var(--neon-cyan);">
+
+                        <div class="d-flex justify-content-between mb-1 mt-3">
+                            <label class="small font-weight-bold"><i class="fas fa-book text-green mr-1"></i> Curriculum Coverage Readiness:</label>
+                            <span id="simCurrVal" class="mono-text text-green">45%</span>
+                        </div>
+                        <input type="range" id="simCurr" min="10" max="100" value="45" style="width: 100%; accent-color: var(--neon-green);">
+                    </div>
+
+                    <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 10px;">
+                        <div class="d-flex justify-content-between mb-1">
+                            <label class="small font-weight-bold"><i class="fas fa-chalkboard-teacher text-purple mr-1"></i> Trainer Competency Ratio:</label>
+                            <span id="simTrainVal" class="mono-text text-purple">40%</span>
+                        </div>
+                        <input type="range" id="simTrain" min="10" max="100" value="40" style="width: 100%; accent-color: var(--neon-purple);">
+
+                        <div class="d-flex justify-content-between mb-1 mt-3">
+                            <label class="small font-weight-bold"><i class="fas fa-tools text-yellow mr-1"></i> Lab Equipment & Machine Readiness:</label>
+                            <span id="simEquipVal" class="mono-text text-yellow">60%</span>
+                        </div>
+                        <input type="range" id="simEquip" min="10" max="100" value="60" style="width: 100%; accent-color: var(--neon-yellow);">
+                    </div>
+                </div>
+
+                <div class="p-3" style="background: #030816; border: 1px solid var(--border-color); border-radius: 8px;">
+                    <span class="text-muted small d-block mb-1">RECOMMENDED POLICY INTERVENTION:</span>
+                    <p id="simActionSummary" class="text-white small mb-0 font-weight-bold">Primary Bottleneck is Curriculum Coverage. Action: Deploy 5-Axis addendum syllabus to regional ITI Machinist programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CORE VIEW 4: SKILLNESS GATE PIPELINE VALIDATOR -->
+    <section class="section" id="skillness-gate">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-filter mr-1"></i> Ontology Disambiguation</div>
+                <h2 class="section-title">The Skillness Gate</h2>
+                <p class="section-subtitle">Filtering genuine technical competencies from HR buzzwords, administrative terms, and workplace perks</p>
+            </div>
+
+            <div class="glow-card purple animate-on-scroll" data-accent="purple">
+                <div class="mb-3">
+                    <span class="text-secondary small font-weight-bold d-block mb-2">SELECT A SAMPLE PHRASE TO RUN THROUGH THE 5-PILLAR GATE:</span>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button class="corridor-pill-btn gate-phrase-btn active-pill" data-sample="cnc5axis">5-Axis CNC Programming</button>
+                        <button class="corridor-pill-btn gate-phrase-btn" data-sample="freelunch">Free Lunch & AC Canteen</button>
+                        <button class="corridor-pill-btn gate-phrase-btn" data-sample="joiner">Immediate Joiner within 7 Days</button>
+                        <button class="corridor-pill-btn gate-phrase-btn" data-sample="cobot">Cobot Joint Calibration</button>
+                    </div>
+                </div>
+
+                <div class="p-3 mb-4" style="background: #030713; border: 1.5px solid var(--border-color); border-radius: 12px;">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div>
+                            <span class="text-muted small">Ingested Phrase:</span>
+                            <h4 id="gateTestedPhrase" class="text-white font-weight-bold mt-1 mb-0">"5-Axis CNC Programming & G-Code Offsets"</h4>
+                        </div>
+                        <span id="gateStatusBadge" class="chip" style="border: 1.5px solid var(--neon-green); color: var(--neon-green); font-size: 0.9rem; font-weight: bold; padding: 8px 16px;">
+                            PASS - Valid Technical Competency
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 5-Pillar Threshold Audit Cards -->
+                <div class="grid-5" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        <span class="text-muted small font-weight-bold">1. Repetition</span>
+                        <p id="gateRepText" class="text-cyan small font-weight-bold mt-1 mb-0">34 Distinct Mentions</p>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        <span class="text-muted small font-weight-bold">2. Independence</span>
+                        <p id="gateIndText" class="text-green small font-weight-bold mt-1 mb-0">11 Distinct Employers</p>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        <span class="text-muted small font-weight-bold">3. Persistence</span>
+                        <p id="gatePersText" class="text-purple small font-weight-bold mt-1 mb-0">180 Days Presence</p>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        <span class="text-muted small font-weight-bold">4. Tech Relevance</span>
+                        <p id="gateTechText" class="text-yellow small font-weight-bold mt-1 mb-0">0.88 Cosine Match</p>
+                    </div>
+                    <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        <span class="text-muted small font-weight-bold">5. NSQF Gap</span>
+                        <p id="gateGapText" class="text-pink small font-weight-bold mt-1 mb-0">Missing in ITI syllabus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CORE VIEW 5: ECONOMIC CORRIDORS ON MAP -->
+    <section class="section" id="economic-corridors">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-map-marked-alt mr-1"></i> Cross-Boundary Economic Geography</div>
+                <h2 class="section-title">Economic Corridors on Map</h2>
+                <p class="section-subtitle">Modeling industrial clusters and worker commute sheds beyond administrative revenue borders</p>
+            </div>
+
+            <div class="corridor-map-box glow-card blue animate-on-scroll" data-accent="blue">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap" style="gap: 12px;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button class="corridor-pill-btn active" data-corridor="pune"><i class="fas fa-car mr-1"></i> Pune - Mumbai Corridor</button>
+                        <button class="corridor-pill-btn" data-corridor="nagpur"><i class="fas fa-industry mr-1"></i> Nagpur - Wardha Corridor</button>
+                        <button class="corridor-pill-btn" data-corridor="nashik"><i class="fas fa-cogs mr-1"></i> Nashik - Aurangabad Corridor</button>
+                    </div>
+                    <span class="chip" style="background: rgba(0,240,255,0.12); color: var(--neon-cyan);"><i class="fas fa-route mr-1"></i> Economic Travel Shed</span>
+                </div>
+
+                <div class="p-3 mb-3" style="background: #060e22; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h4 id="corrName" class="text-white font-weight-bold mb-2">Pune - Chakan - Talegaon - Raigad Manufacturing Corridor</h4>
+                    <div class="grid-3 mb-2">
+                        <div>
+                            <span class="text-muted small">Catchment Districts:</span>
+                            <p id="corrDistricts" class="text-cyan small font-weight-bold mb-0">Pune, Raigad, Thane</p>
+                        </div>
+                        <div>
+                            <span class="text-muted small">Primary Industrial Sectors:</span>
+                            <p id="corrSectors" class="text-green small font-weight-bold mb-0">Automotive, Precision Machine Tools, Heavy Fabrication</p>
+                        </div>
+                        <div>
+                            <span class="text-muted small">Active Employers & ITIs:</span>
+                            <p id="corrEmployers" class="text-yellow small font-weight-bold mb-0">280+ Verified Plants | 24 ITIs</p>
+                        </div>
+                    </div>
+                    <div class="p-2" style="background: rgba(255,255,255,0.03); border-radius: 6px;">
+                        <span class="text-muted small">Cross-Boundary Mobility Vector:</span>
+                        <p id="corrMobility" class="text-white small font-weight-bold mb-0">34% of trained workforce commutes across district borders daily</p>
+                        <span id="corrSmi" class="text-secondary small">Spatial Mismatch Index: 0.22 (Low friction, established bus/rail feeder routes)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. CORE VIEW 6: INTERVENTION TRACKING LIFECYCLE (KANBAN) -->
+    <section class="section" id="interventions-lifecycle">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-tasks mr-1"></i> Reversible Interventions</div>
+                <h2 class="section-title">Intervention Tracking Lifecycle</h2>
+                <p class="section-subtitle">Managing policy actions through distinct review horizons and measurable outcome loops</p>
+            </div>
+
+            <div class="kanban-board animate-on-scroll">
+                <!-- Column 1: Signal Detected -->
+                <div class="kanban-col">
+                    <div class="kanban-col-header">
+                        <strong class="text-white small font-weight-bold">1. Signal Detected</strong>
+                        <span class="badge" style="background: rgba(0,240,255,0.2); color: var(--neon-cyan);">1 ACTIVE</span>
+                    </div>
+                    <div class="kanban-item" data-skill="ev">
+                        <span class="chip" style="background: rgba(255,0,127,0.15); color: var(--neon-pink); font-size: 0.72rem;">EV Battery BMS</span>
+                        <h5 class="text-white small font-weight-bold mt-1 mb-1">Nagpur MIHAN EV Diagnostics Lab</h5>
+                        <p class="text-secondary small mb-1">Tender signal: 120 technicians required.</p>
+                        <span class="text-muted small d-block">Review: 2024-Q3</span>
+                    </div>
+                </div>
+
+                <!-- Column 2: Under Review -->
+                <div class="kanban-col">
+                    <div class="kanban-col-header">
+                        <strong class="text-white small font-weight-bold">2. Under Review</strong>
+                        <span class="badge" style="background: rgba(255,183,3,0.2); color: var(--neon-yellow);">1 ACTIVE</span>
+                    </div>
+                    <div class="kanban-item" data-skill="analytics">
+                        <span class="chip" style="background: rgba(255,183,3,0.15); color: var(--neon-yellow); font-size: 0.72rem;">Trainer Development</span>
+                        <h5 class="text-white small font-weight-bold mt-1 mb-1">Industrial Data Operations Upskill</h5>
+                        <p class="text-secondary small mb-1">50 instructors for Python/SQL apprenticeship.</p>
+                        <span class="text-muted small d-block">Review: 2024-04-30</span>
+                    </div>
+                </div>
+
+                <!-- Column 3: Active Pilot -->
+                <div class="kanban-col">
+                    <div class="kanban-col-header">
+                        <strong class="text-white small font-weight-bold">3. Active Pilot</strong>
+                        <span class="badge" style="background: rgba(0,230,118,0.2); color: var(--neon-green);">1 ACTIVE</span>
+                    </div>
+                    <div class="kanban-item" data-skill="cnc">
+                        <span class="chip" style="background: rgba(0,230,118,0.15); color: var(--neon-green); font-size: 0.72rem;">Curriculum Pilot</span>
+                        <h5 class="text-white small font-weight-bold mt-1 mb-1">5-Axis CNC Addendum in Pune ITIs</h5>
+                        <p class="text-secondary small mb-1">Metric: 80% practical score in 6 mos.</p>
+                        <span class="text-muted small d-block">Review: 2024-06-30</span>
+                    </div>
+                </div>
+
+                <!-- Column 4: Outcome Validated -->
+                <div class="kanban-col">
+                    <div class="kanban-col-header">
+                        <strong class="text-white small font-weight-bold">4. Outcome Validated</strong>
+                        <span class="badge" style="background: rgba(168,85,247,0.2); color: var(--neon-purple);">1 CLOSED</span>
+                    </div>
+                    <div class="kanban-item" data-skill="cnc">
+                        <span class="chip" style="background: rgba(168,85,247,0.15); color: var(--neon-purple); font-size: 0.72rem;">Model Updated</span>
+                        <h5 class="text-white small font-weight-bold mt-1 mb-1">Chakan Auto Welding Passouts</h5>
+                        <p class="text-secondary small mb-1">84% in-sector retention verified via tracer.</p>
+                        <span class="text-green small d-block font-weight-bold">✔ Closed & Learned</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. CLEAN COMPETENCY & TAXONOMY INSPECTOR -->
+    <section class="section" id="clean-taxonomy">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-sitemap mr-1"></i> Canonical Ontology</div>
+                <h2 class="section-title">Skill Competency & Taxonomy Inspector</h2>
+                <p class="section-subtitle">Structured competency registry showing multilingual aliases, prerequisites, and mapped courses</p>
+            </div>
+
+            <div class="glow-card blue animate-on-scroll" data-accent="blue">
+                <div class="d-flex gap-2 flex-wrap mb-4">
+                    <button class="corridor-pill-btn tax-tab-btn active-tab" data-skill="cnc">CNC Programming (SKILL_001)</button>
+                    <button class="corridor-pill-btn tax-tab-btn" data-skill="python">Python & Data Analytics (SKILL_002)</button>
+                    <button class="corridor-pill-btn tax-tab-btn" data-skill="ev">EV Battery Diagnostics (SKILL_003)</button>
+                </div>
+
+                <div class="p-4" style="background: #030816; border: 1.5px solid var(--border-color); border-radius: 12px;">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                        <div>
+                            <h3 id="taxSkillName" class="text-white font-weight-bold mb-1">CNC Programming & Multi-Axis Machining</h3>
+                            <span id="taxCategory" class="text-cyan small font-weight-bold">Manufacturing & Precision Engineering</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <span id="taxId" class="badge" style="background: rgba(0,240,255,0.15); color: var(--neon-cyan); border: 1px solid var(--neon-cyan);">SKILL_001</span>
+                            <span id="taxNsqf" class="badge" style="background: rgba(0,230,118,0.15); color: var(--neon-green); border: 1px solid var(--neon-green);">NSQF Level 5</span>
+                        </div>
+                    </div>
+
+                    <div class="grid-2 mb-3">
+                        <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 8px;">
+                            <span class="text-muted small font-weight-bold d-block mb-1">Multilingual Aliases:</span>
+                            <div id="taxAliases" class="d-flex flex-wrap gap-1"></div>
+                        </div>
+                        <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 8px;">
+                            <span class="text-muted small font-weight-bold d-block mb-1">Upstream Prerequisites:</span>
+                            <div id="taxPrereqs" class="d-flex flex-wrap gap-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 8px;">
+                            <span class="text-muted small font-weight-bold d-block mb-1">Specialization Vectors:</span>
+                            <div id="taxSpecs" class="d-flex flex-wrap gap-1"></div>
+                        </div>
+                        <div class="p-3" style="background: rgba(255,255,255,0.02); border-radius: 8px;">
+                            <span class="text-muted small font-weight-bold d-block mb-1">Mapped ITI / Polytechnic Courses:</span>
+                            <div id="taxCourses" class="d-flex flex-wrap gap-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. SHOW ME WHY AUDIT DRAWER (SLIDE-OUT PANEL COMPONENT) -->
+    <div id="auditDrawerOverlay" class="audit-drawer-overlay" onclick="closeAuditDrawer()"></div>
+    <div id="auditDrawer" class="audit-drawer">
+        <div class="drawer-header">
+            <div>
+                <span class="badge" style="background: rgba(0,240,255,0.15); color: var(--neon-cyan); border: 1px solid var(--neon-cyan);">SHOW ME WHY AUDIT TRAIL</span>
+                <h4 id="drawerTitle" class="text-white font-weight-bold mt-2 mb-0" style="font-size: 1.15rem;">5-Axis CNC Curriculum Update</h4>
+                <span id="drawerCanonical" class="text-muted small font-family-mono">Canonical ID: SKILL_001</span>
+            </div>
+            <button class="drawer-close-btn" onclick="closeAuditDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="drawer-body">
+            <div class="p-3 mb-3" style="background: rgba(0,230,118,0.1); border: 1px solid var(--neon-green); border-radius: 8px;">
+                <span class="text-muted small d-block">Statistical Confidence Score:</span>
+                <strong id="drawerConfidence" class="text-green">0.87 (High Multi-Source Convergence)</strong>
+            </div>
+
+            <h5 class="text-white font-weight-bold mb-2"><i class="fas fa-layer-group text-cyan mr-1"></i> Fused Multi-Source Evidence Stream:</h5>
+            <div id="drawerSources" class="mb-4"></div>
+
+            <h5 class="text-white font-weight-bold mb-2"><i class="fas fa-exclamation-circle text-yellow mr-1"></i> Documented Model Boundary Assumptions:</h5>
+            <ul id="drawerAssumptions" style="padding-left: 20px;" class="mb-4"></ul>
+
+            <div class="p-3" style="background: #030816; border: 1px solid var(--border-color); border-radius: 8px;">
+                <span class="text-muted small d-block">Target Success Metric:</span>
+                <p id="drawerMetric" class="text-white small mb-0 font-weight-bold">80% trainee practical competency at 6 months.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13. FULL-STACK API SANDBOX -->
+    <section class="section" id="live-api">
+        <div class="container">
+            <div class="section-header animate-on-scroll text-center">
+                <div class="hero-badge mb-2"><i class="fas fa-terminal mr-2"></i> Full-Stack Demonstrator</div>
+                <h2 class="section-title">Live Evidence & Alignment Engine</h2>
+                <p class="section-subtitle">Direct interactive connection to the SkillPulse FastAPI backend services</p>
+                <div class="mb-3">
+                    <span id="liveApiStatus" class="chip" style="background: rgba(0, 255, 136, 0.15); border: 1.5px solid var(--neon-green); color: var(--neon-green); padding: 7px 16px; font-weight: bold;">
+                        <i class="fas fa-satellite-dish mr-1"></i> CONNECTING TO BACKEND...
+                    </span>
+                </div>
+            </div>
+
+            <div class="glow-card cyan animate-on-scroll">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap" style="gap: 12px;">
+                    <div>
+                        <h4 class="text-white font-weight-bold mb-1"><i class="fas fa-code mr-2 text-cyan"></i> Query Live Intelligence Feeds</h4>
+                        <p class="text-secondary small mb-0">Select an API query to test live data ingestion and Show Me Why provenance:</p>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button class="btn-secondary" onclick="fetchLiveEndpoint('/api/overview')" style="padding: 6px 14px; font-size: 0.82rem;">/api/overview</button>
+                        <button class="btn-secondary" onclick="fetchLiveEndpoint('/api/market')" style="padding: 6px 14px; font-size: 0.82rem;">/api/market</button>
+                        <button class="btn-secondary" onclick="fetchLiveEndpoint('/api/alignment')" style="padding: 6px 14px; font-size: 0.82rem;">/api/alignment</button>
+                        <button class="btn-secondary" onclick="fetchLiveEndpoint('/api/evidence/CNC%20Programming')" style="padding: 6px 14px; font-size: 0.82rem;">Show Me Why: CNC</button>
+                    </div>
+                </div>
+
+                <div style="background: #030712; border: 1px solid var(--border-color); border-radius: 10px; padding: 16px;">
+                    <div class="d-flex justify-content-between align-items-center mb-2" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">
+                        <span class="mono-text small" style="color: var(--neon-cyan);"><i class="fas fa-laptop-code mr-1"></i> RESPONSE STREAM <span id="currentEndpointTag">[/api/overview]</span></span>
+                        <span class="mono-text small text-muted">Format: JSON</span>
+                    </div>
+                    <pre id="apiConsoleOutput" class="mono-text" style="color: var(--neon-green); font-size: 0.84rem; max-height: 240px; overflow-y: auto; white-space: pre-wrap; line-height: 1.45;">
+{
+  "system_pulse": "Active & Operational",
+  "critical_signals": 5,
+  "total_skills_tracked": 847,
+  "active_interventions": 12,
+  "data_freshness": "92%",
+  "market_observability": "76%",
+  "effective_supply_rate": "64%",
+  "alignment_score": "71%",
+  "audit_integrity": "100% Provenance Stamped"
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <h3 class="nav-logo" style="font-size: 1.4rem;">⚡ SKILLPULSE</h3>
+                    <p>Evidence-to-Action Intelligence Layer for Continuous Skill Planning</p>
+                    <p class="text-muted small" style="margin-top: 5px;">Built by Team Veyronix • PS 134 Ecosystem Alignment</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Core Modules</h4>
+                    <a href="#student-guidance">Student Guidance View</a>
+                    <a href="#mismatch-breakdown">4-Way Mismatch</a>
+                    <a href="#skillness-gate">Skillness Gate</a>
+                    <a href="#economic-corridors">Economic Corridors</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Detail Pages</h4>
+                    <a href="pages/architecture.html">10-Layer Architecture</a>
+                    <a href="pages/market-intelligence.html">Market Intelligence</a>
+                    <a href="pages/alignment-engine.html">Alignment Engine</a>
+                    <a href="pages/candidate-guidance.html">Candidate Guidance</a>
+                </div>
+            </div>
+            <div class="footer-tagline">
+                <p>EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 SkillPulse by Team Veyronix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 15. BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Script for Live API Console -->
+    <script>
+    async function fetchLiveEndpoint(endpoint) {
+        const out = document.getElementById('apiConsoleOutput');
+        const tag = document.getElementById('currentEndpointTag');
+        if (tag) tag.textContent = `[${endpoint}]`;
+        if (out) out.textContent = 'Fetching live data from FastAPI backend...';
+
+        try {
+            const res = await fetch(endpoint);
+            if (res.ok) {
+                const data = await res.json();
+                if (out) out.textContent = JSON.stringify(data, null, 2);
+            } else {
+                if (out) out.textContent = `HTTP ${res.status}: ${res.statusText}`;
+            }
+        } catch (e) {
+            if (out) {
+                out.textContent = `[STANDALONE DEMONSTRATOR MODE]\nEndpoint: ${endpoint}\nStatus: 200 OK (Client-Simulated)\nBackend service active via 'python backend/main.py' at http://127.0.0.1:8000`;
+            }
+        }
+    }
+    </script>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

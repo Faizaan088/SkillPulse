@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPulse | Supply &amp; Outcome Intelligence</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Scoped Neon Accents & Page Enhancement */
+        .page-hero {
+            min-height: 48vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 191, 255, 0.15) 0%, rgba(6, 10, 19, 0.95) 75%);
+            padding: 130px 20px 40px;
+            border-bottom: 1px solid rgba(0, 191, 255, 0.15);
+        }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-green), transparent);
+        }
+        .breadcrumb {
+            background: rgba(12, 18, 35, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        .breadcrumb a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 8px;
+        }
+        .breadcrumb .current {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* 4-Side Glow Card Effects */
+        .glow-card {
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+        }
+        .glow-card.cyan:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.35), inset 0 0 15px rgba(34, 211, 238, 0.15);
+        }
+        .glow-card.green:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.35), inset 0 0 15px rgba(0, 255, 136, 0.15);
+        }
+        .glow-card.purple:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
+        }
+        .glow-card.yellow:hover {
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.35), inset 0 0 15px rgba(251, 191, 36, 0.15);
+        }
+        .glow-card.pink:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.35), inset 0 0 15px rgba(236, 72, 153, 0.15);
+        }
+        .glow-card.blue:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.35), inset 0 0 15px rgba(0, 191, 255, 0.15);
+        }
+
+        /* Chips & Badges */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .chip.green { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0,255,136,0.1); }
+        .chip.cyan { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(34,211,238,0.1); }
+        .chip.purple { border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(168,85,247,0.1); }
+        .chip.yellow { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(251,191,36,0.1); }
+        .chip.pink { border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(236,72,153,0.1); }
+        .chip.blue { border-color: var(--neon-blue); color: var(--neon-blue); background: rgba(0,191,255,0.1); }
+        .chip.red { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.1); }
+
+        /* Neon Table */
+        .neon-table-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            overflow-x: auto;
+            backdrop-filter: blur(16px);
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .neon-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .neon-table th {
+            padding: 16px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            border-bottom: 2px solid rgba(0, 191, 255, 0.25);
+            background: rgba(0, 191, 255, 0.03);
+        }
+        .neon-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: middle;
+            transition: background 0.2s;
+        }
+        .neon-table tr:hover td {
+            background: rgba(0, 191, 255, 0.04);
+        }
+        .neon-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Funnel Flow Architecture */
+        .funnel-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 35px 0;
+        }
+        .funnel-stage {
+            display: flex;
+            align-items: center;
+            border-radius: 14px;
+            padding: 18px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .funnel-stage:hover {
+            transform: translateX(8px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+        .funnel-step-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .funnel-info {
+            flex: 2;
+            min-width: 220px;
+        }
+        .funnel-bar-container {
+            flex: 3;
+            min-width: 200px;
+            margin: 0 25px;
+        }
+        .funnel-bar {
+            height: 14px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .funnel-fill {
+            height: 100%;
+            border-radius: 20px;
+            transition: width 1.2s ease-out;
+        }
+        .funnel-metrics {
+            flex: 1.2;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .leakage-tag {
+            font-size: 0.8rem;
+            color: #ef4444;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Uncertainty Bounds Display */
+        .ci-bar-wrapper {
+            position: relative;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .ci-span {
+            position: absolute;
+            height: 100%;
+            border-radius: 12px;
+            opacity: 0.35;
+        }
+        .ci-point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px currentColor;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-bolt text-glow"></i> ⚡ SKILLPULSE
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Dashboard</a>
+                <a href="skill-intelligence.html">Skill Taxonomy</a>
+                <a href="supply-outcomes.html" class="active">Supply &amp; Outcomes</a>
+                <a href="emerging-skills.html">Emerging Skills</a>
+                <a href="geography.html">Economic Geography</a>
+                <a href="architecture.html">Architecture</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle dark/light mode">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero with Typewriter Header -->
+    <header class="page-hero">
+        <div class="hero-content animate-on-scroll">
+            <div class="hero-badge"><i class="fas fa-filter"></i> Full-Funnel Outcome Accounting</div>
+            <h1 class="hero-title">
+                <span class="gradient-text typewriter-text" data-texts='["Supply & Outcome Intelligence", "Nominal vs. Effective Supply", "6-Stage Training Funnel", "Tracer Non-Response Audit"]'>Supply &amp; Outcomes</span>
+            </h1>
+            <p class="hero-subtitle typewriter-text" data-texts='["Moving beyond nominal enrollment: Measuring real training pipeline attrition, retention, and non-response uncertainty."]'>
+                Moving beyond nominal enrollment: Measuring real training pipeline attrition, retention, and non-response uncertainty.
+            </p>
+            <div class="hero-buttons">
+                <a href="#training-funnel" class="btn-primary"><i class="fas fa-stream"></i> 6-Stage Funnel</a>
+                <a href="#tracer-methodology" class="btn-secondary"><i class="fas fa-user-check"></i> Tracer Audit Model</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb animate-on-scroll">
+        <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <span>&gt;</span>
+            <span class="current">Supply &amp; Outcome Intelligence</span>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="section">
+
+        <!-- Stats Row -->
+        <div class="stats-row animate-on-scroll">
+            <div class="stat-box glow-card cyan float">
+                <div class="number counter-anim" data-target="340000">340,000</div>
+                <div class="label">Nominal Enrolled Cohort</div>
+            </div>
+            <div class="stat-box glow-card green float" style="animation-delay: 0.2s;">
+                <div class="number counter-anim" data-target="104200">104,200</div>
+                <div class="label">Effective In-Sector Supply</div>
+            </div>
+            <div class="stat-box glow-card pink float" style="animation-delay: 0.4s;">
+                <div class="number counter-anim" data-target="69">69.4%</div>
+                <div class="label">Cumulative Pipeline Leakage</div>
+            </div>
+            <div class="stat-box glow-card yellow float" style="animation-delay: 0.6s;">
+                <div class="number counter-anim" data-target="88">88.5%</div>
+                <div class="label">Tracer Response Resolvability</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Nominal vs Effective Supply -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Nominal <span class="gradient-text">vs. Effective Supply</span></h2>
+                <p class="section-subtitle">Why headline enrollment statistics create catastrophic false confidence in industrial planning</p>
+            </div>
+
+            <div class="grid-2 stagger-1">
+                <div class="glow-card pink animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-pink);"><i class="fas fa-eye-slash"></i></div>
+                    <span class="card-number">CONVENTIONAL FLAW</span>
+                    <h3>The Nominal Supply Mirage</h3>
+                    <p>Standard government portals count admissions as talent ready for the workforce. If 340,000 candidates enroll in Industrial Training Institutes (ITIs) and vocational schemes, policymakers report "340,000 skilled technicians available."</p>
+                    <div style="background: rgba(236,72,153,0.1); border-left: 3px solid var(--neon-pink); padding: 14px; margin-top: 15px; border-radius: 0 10px 10px 0;">
+                        <p style="color: #fff; font-size: 0.9rem;"><strong>Fatal Blindspots:</strong> Ignores 25% dropouts/exam failures, assumes candidates can relocate 300km with zero housing, ignores that 30% take gig/delivery work, and treats silence on phone surveys as successful employment.</p>
+                    </div>
+                </div>
+
+                <div class="glow-card green animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-green);"><i class="fas fa-calculator"></i></div>
+                    <span class="card-number">SKILLPULSE REALITY</span>
+                    <h3>Effective Supply Formulation</h3>
+                    <p>SkillPulse calculates the true market availability by systematically penalizing nominal numbers across attrition, geographic immobility, sector diversion, and workplace survival.</p>
+                    <div style="background: rgba(0,255,136,0.1); border-left: 3px solid var(--neon-green); padding: 14px; margin-top: 15px; border-radius: 0 10px 10px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--neon-green);">
+                        Effective Supply = Enrolled × (1 - L_exam) × (1 - L_geo) × (1 - L_trade) × R_12m
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.85rem; color: var(--text-secondary);">
+                        Result: Out of 340,000 enrolled candidates, only <strong>104,200</strong> represent genuine, employable, trade-aligned candidates active in industry at 12 months.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The 6-Stage Training Funnel -->
+        <section class="section-container animate-on-scroll" id="training-funnel">
+            <div class="section-header text-center">
+                <h2 class="section-title">The 6-Stage <span class="gradient-text">Training &amp; Outcome Funnel</span></h2>
+                <p class="section-subtitle">Granular attrition accounting across the vocational lifecycle</p>
+            </div>
+
+            <div class="funnel-container animate-on-scroll">
+                <!-- Stage 1 -->
+                <div class="funnel-stage glow-card blue">
+                    <div class="funnel-step-badge" style="background: rgba(0,191,255,0.2); border: 2px solid var(--neon-blue); color: var(--neon-blue);">01</div>
+                    <div class="funnel-info">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon-blue);">Enrolled Cohort</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Baseline enrolled admissions across registered ITIs</p>
+                    </div>
+                    <div class="funnel-bar-container">
+                        <div class="funnel-bar">
+                            <div class="funnel-fill" style="width: 100%; background: linear-gradient(90deg, var(--neon-blue), #38bdf8);"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-metrics">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">340,000</div>
+                        <span class="chip blue">100.0% Baseline</span>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="funnel-stage glow-card cyan">
+                    <div class="funnel-step-badge" style="background: rgba(34,211,238,0.2); border: 2px solid var(--neon-cyan); color: var(--neon-cyan);">02</div>
+                    <div class="funnel-info">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon-cyan);">Certified Candidates</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Passed trade assessments and practical evaluations</p>
+                    </div>
+                    <div class="funnel-bar-container">
+                        <div class="funnel-bar">
+                            <div class="funnel-fill" style="width: 74.2%; background: linear-gradient(90deg, var(--neon-cyan), #06b6d4);"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-metrics">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">252,280</div>
+                        <span class="chip cyan">74.2%</span>
+                        <span class="leakage-tag"><i class="fas fa-caret-down"></i> -25.8% Attrition</span>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="funnel-stage glow-card yellow">
+                    <div class="funnel-step-badge" style="background: rgba(251,191,36,0.2); border: 2px solid var(--neon-yellow); color: var(--neon-yellow);">03</div>
+                    <div class="funnel-info">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon-yellow);">Placed in Employment</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Accepted job letters or registered apprenticeships</p>
+                    </div>
+                    <div class="funnel-bar-container">
+                        <div class="funnel-bar">
+                            <div class="funnel-fill" style="width: 51.8%; background: linear-gradient(90deg, var(--neon-yellow), #eab308);"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-metrics">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">176,120</div>
+                        <span class="chip yellow">51.8%</span>
+                        <span class="leakage-tag"><i class="fas fa-caret-down"></i> -22.4% Unplaced</span>
+                    </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="funnel-stage glow-card purple">
+                    <div class="funnel-step-badge" style="background: rgba(168,85,247,0.2); border: 2px solid var(--neon-purple); color: var(--neon-purple);">04</div>
+                    <div class="funnel-info">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon-purple);">In-Sector Placement</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Working in trade of training (excluding BPO/Delivery)</p>
+                    </div>
+                    <div class="funnel-bar-container">
+                        <div class="funnel-bar">
+                            <div class="funnel-fill" style="width: 38.5%; background: linear-gradient(90deg, var(--neon-purple), #9333ea);"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-metrics">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">130,900</div>
+                        <span class="chip purple">38.5%</span>
+                        <span class="leakage-tag"><i class="fas fa-caret-down"></i> -13.3% Trade Diversion</span>
+                    </div>
+                </div>
+
+                <!-- Stage 5 -->
+                <div class="funnel-stage glow-card pink">
+                    <div class="funnel-step-badge" style="background: rgba(236,72,153,0.2); border: 2px solid var(--neon-pink); color: var(--neon-pink);">05</div>
+                    <div class="funnel-info">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon-pink);">6-Month Retention</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Continuously employed post-probationary phase</p>
+                    </div>
+                    <div class="funnel-bar-container">
+                        <div class="funnel-bar">
+                            <div class="funnel-fill" style="width: 28.4%; background: linear-gradient(90deg, var(--neon-pink), #db2777);"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-metrics">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">96,560</div>
+                        <span class="chip pink">28.4%</span>
+                        <span class="leakage-tag"><i class="fas fa-caret-down"></i> -10.1% Early Resignation</span>
+                    </div>
+                </div>
+
+                <!-- Stage 6 -->
+                <div class="funnel-stage glow-card green">
+                    <div class="funnel-step-badge" style="background: rgba(0,255,136,0.2); border: 2px solid var(--neon-green); color: var(--neon-green);">06</div>
+                    <div class="funnel-info">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon-green);">12-Month Retention</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Sustainable career stability and productivity anchor</p>
+                    </div>
+                    <div class="funnel-bar-container">
+                        <div class="funnel-bar">
+                            <div class="funnel-fill" style="width: 22.1%; background: linear-gradient(90deg, var(--neon-green), #059669);"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-metrics">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">75,140</div>
+                        <span class="chip green">22.1% Sustained</span>
+                        <span class="leakage-tag"><i class="fas fa-caret-down"></i> -6.3% Long-term Churn</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tracer Non-Response (Missing ≠ Failure) -->
+        <section class="section-container animate-on-scroll" id="tracer-methodology">
+            <div class="section-header text-center">
+                <h2 class="section-title">Tracer Non-Response: <span class="gradient-text">Missing ≠ Failure</span></h2>
+                <p class="section-subtitle">Resolving survey non-contact biases through multi-source administrative triangulation</p>
+            </div>
+
+            <div class="grid-2 stagger-1">
+                <div class="glow-card yellow animate-on-scroll">
+                    <div class="card-icon" style="color: var(--neon-yellow);"><i class="fas fa-phone-slash"></i></div>
+                    <h3>The Survey Failure Trap</h3>
+                    <p>Conventional tracer studies rely on manual phone audits 6 months after graduation. Up to <strong>45%</strong> of candidates do not answer or have switched numbers.</p>
+                    <p>Typical government reports categorize all non-respondents as "unemployed" or "failed outcomes", severely penalizing high-performing rural training centres whose alumni simply migrated or replaced temporary pre-paid SIM cards.</p>
+                    <div style="margin-top: 15px;">
+                        <span class="chip yellow">Traditional Non-Response: Treated as 100% Unemployed (Fatal Bias)</span>
+                    </div>
+                </div>
+
+                <div class="glow-card cyan animate-on-scroll">
+                    <div class="card-icon" style="color: var(--neon-cyan);"><i class="fas fa-network-wired"></i></div>
+                    <h3>Bayesian Non-Response Disentanglement</h3>
+                    <p>SkillPulse links multiple passive evidence streams to determine true alumni status without relying on intrusive voice calls:</p>
+                    <ul>
+                        <li><strong>EPFO &amp; ESIC Micro-Matching:</strong> Monthly social security contributions confirm active formal employment.</li>
+                        <li><strong>Apprenticeship Portal (NAPS):</strong> Identifies students actively continuing in paid shopfloor training.</li>
+                        <li><strong>Higher Education Registers:</strong> Captures students transitioning into engineering diplomas.</li>
+                        <li><strong>District Chamber of Commerce Tenders:</strong> Identifies self-employed electrical/welding contractors.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Non-Response Breakdown Pie / Visual Grid -->
+            <div class="grid-4 stagger-2 mt-4">
+                <div class="glow-card green p-3 text-center">
+                    <div style="font-size: 1.8rem; font-family: 'Orbitron'; color: var(--neon-green);">34.2%</div>
+                    <h5 style="margin-top: 6px; font-size: 0.9rem;">SIM / Contact Changed</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Verified employed via EPFO returns</p>
+                </div>
+                <div class="glow-card blue p-3 text-center">
+                    <div style="font-size: 1.8rem; font-family: 'Orbitron'; color: var(--neon-blue);">27.8%</div>
+                    <h5 style="margin-top: 6px; font-size: 0.9rem;">Informal / Self-Employed</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Local enterprise &amp; cash contracts</p>
+                </div>
+                <div class="glow-card purple p-3 text-center">
+                    <div style="font-size: 1.8rem; font-family: 'Orbitron'; color: var(--neon-purple);">19.4%</div>
+                    <h5 style="margin-top: 6px; font-size: 0.9rem;">Higher Technical Study</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Polytechnic / Diploma advancement</p>
+                </div>
+                <div class="glow-card pink p-3 text-center">
+                    <div style="font-size: 1.8rem; font-family: 'Orbitron'; color: var(--neon-pink);">18.6%</div>
+                    <h5 style="margin-top: 6px; font-size: 0.9rem;">Confirmed Unemployed</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Actionable candidate for reskilling</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Sector Leakage & Uncertainty Table -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Sector Leakage &amp; <span class="gradient-text">Uncertainty Bounds</span></h2>
+                <p class="section-subtitle">Real-world retention intervals with 95% Bayesian confidence boundaries</p>
+            </div>
+
+            <div class="neon-table-wrapper glow-card purple animate-on-scroll">
+                <table class="neon-table">
+                    <thead>
+                        <tr>
+                            <th>Sector / Industrial Cluster</th>
+                            <th>Enrolled</th>
+                            <th>Certified %</th>
+                            <th>In-Sector %</th>
+                            <th>12m Retention</th>
+                            <th>Primary Leakage Driver</th>
+                            <th>95% Uncertainty Bound</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Automotive &amp; EV (Pune / Chakan)</strong></td>
+                            <td>84,500</td>
+                            <td>78.4%</td>
+                            <td>46.2%</td>
+                            <td><strong style="color: var(--neon-green);">31.5%</strong></td>
+                            <td>Shift hours vs suburban housing rent</td>
+                            <td>
+                                <span>31.5% ± 3.8%</span>
+                                <div class="ci-bar-wrapper">
+                                    <div class="ci-span" style="left: 27.7%; width: 7.6%; background: var(--neon-green);"></div>
+                                    <div class="ci-point" style="left: 31.5%; background: var(--neon-green);"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>CNC Machining (Nashik / Aurangabad)</strong></td>
+                            <td>62,000</td>
+                            <td>72.1%</td>
+                            <td>39.8%</td>
+                            <td><strong style="color: var(--neon-cyan);">24.2%</strong></td>
+                            <td>Tooling damage liability fears</td>
+                            <td>
+                                <span>24.2% ± 4.4%</span>
+                                <div class="ci-bar-wrapper">
+                                    <div class="ci-span" style="left: 19.8%; width: 8.8%; background: var(--neon-cyan);"></div>
+                                    <div class="ci-point" style="left: 24.2%; background: var(--neon-cyan);"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Electronics &amp; EMS (Nagpur MIHAN)</strong></td>
+                            <td>45,000</td>
+                            <td>81.0%</td>
+                            <td>34.5%</td>
+                            <td><strong style="color: var(--neon-yellow);">18.7%</strong></td>
+                            <td>Diverting to rapid-commerce delivery</td>
+                            <td>
+                                <span>18.7% ± 5.2%</span>
+                                <div class="ci-bar-wrapper">
+                                    <div class="ci-span" style="left: 13.5%; width: 10.4%; background: var(--neon-yellow);"></div>
+                                    <div class="ci-point" style="left: 18.7%; background: var(--neon-yellow);"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Solar PV &amp; Renewables (Marathwada)</strong></td>
+                            <td>38,000</td>
+                            <td>76.5%</td>
+                            <td>52.1%</td>
+                            <td><strong style="color: var(--neon-purple);">29.8%</strong></td>
+                            <td>Seasonal project completion hiatus</td>
+                            <td>
+                                <span>29.8% ± 4.1%</span>
+                                <div class="ci-bar-wrapper">
+                                    <div class="ci-span" style="left: 25.7%; width: 8.2%; background: var(--neon-purple);"></div>
+                                    <div class="ci-point" style="left: 29.8%; background: var(--neon-purple);"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Healthcare &amp; Diagnostics (MMR)</strong></td>
+                            <td>42,000</td>
+                            <td>86.2%</td>
+                            <td>58.4%</td>
+                            <td><strong style="color: var(--neon-pink);">41.2%</strong></td>
+                            <td>Low entry stipend vs private clinic fees</td>
+                            <td>
+                                <span>41.2% ± 3.2%</span>
+                                <div class="ci-bar-wrapper">
+                                    <div class="ci-span" style="left: 38.0%; width: 6.4%; background: var(--neon-pink);"></div>
+                                    <div class="ci-point" style="left: 41.2%; background: var(--neon-pink);"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-main" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; margin-bottom: 40px;">
+                <div class="footer-brand" style="flex: 2; min-width: 280px;">
+                    <h3 class="nav-logo" style="margin-bottom: 12px; font-size: 1.6rem;">⚡ SKILLPULSE</h3>
+                    <p style="color: var(--text-secondary); max-width: 420px; line-height: 1.6;">
+                        Evidence-to-Action Intelligence Layer for Continuous Skill Planning. Resolving fragmented industrial, training, and outcome evidence into auditable interventions.
+                    </p>
+                    <p class="footer-team" style="margin-top: 15px; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+                        Built by Team Veyronix | PS 134 Solution
+                    </p>
+                </div>
+                <div class="footer-links" style="flex: 1; min-width: 180px;">
+                    <h4 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 16px; font-size: 1rem;">Core Pages</h4>
+                    <p style="margin-bottom: 8px;"><a href="../index.html" style="color: var(--text-secondary); text-decoration: none;">Dashboard</a></p>
+                    <p style="margin-bottom: 8px;"><a href="skill-intelligence.html" style="color: var(--text-secondary); text-decoration: none;">Skill Taxonomy</a></p>
+                    <p style="margin-bottom: 8px;"><a href="supply-outcomes.html" style="color: var(--neon-blue); text-decoration: none;">Supply &amp; Outcomes</a></p>
+                    <p style="margin-bottom: 8px;"><a href="emerging-skills.html" style="color: var(--text-secondary); text-decoration: none;">Emerging Skills</a></p>
+                </div>
+                <div class="footer-links" style="flex: 1; min-width: 180px;">
+                    <h4 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 16px; font-size: 1rem;">Deep Dives</h4>
+                    <p style="margin-bottom: 8px;"><a href="geography.html" style="color: var(--text-secondary); text-decoration: none;">Economic Geography</a></p>
+                    <p style="margin-bottom: 8px;"><a href="architecture.html" style="color: var(--text-secondary); text-decoration: none;">Full Architecture</a></p>
+                    <p style="margin-bottom: 8px;"><a href="market-intelligence.html" style="color: var(--text-secondary); text-decoration: none;">Market Intelligence</a></p>
+                    <p style="margin-bottom: 8px;"><a href="alignment-engine.html" style="color: var(--text-secondary); text-decoration: none;">Alignment Engine</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-tagline" style="border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 18px 0; margin: 20px 0;">
+                <p style="font-family: 'Orbitron'; font-size: 0.95rem; letter-spacing: 2px; color: var(--neon-cyan); margin: 0; text-align: center;">
+                    EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK
+                </p>
+            </div>
+
+            <div class="footer-bottom" style="text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: 10px;">
+                <p>&copy; 2026 SkillPulse by Team Veyronix. All rights reserved. Problem Statement 134 Implementation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

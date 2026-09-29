@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interventions & Decision Engine | SkillPulse</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Floating Theme Toggle (Sun & Moon) -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Light / Dark Mode">☀️</button>
+
+    <!-- Navigation Bar -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">⚡ SKILLPULSE</a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#architecture">Architecture</a>
+                <a href="../index.html#features">Modules</a>
+                <a href="alignment-engine.html">Alignment</a>
+                <a href="interventions.html" class="active">Interventions</a>
+                <a href="evidence-explorer.html">Evidence</a>
+                <a href="candidate-guidance.html">Candidate Guidance</a>
+            </div>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <div class="breadcrumb animate-on-scroll">
+                <a href="../index.html">Home</a> &gt; <a href="../index.html#architecture">Architecture</a> &gt; <span>Interventions & Decision Engine</span>
+            </div>
+            <h1 class="page-title animate-on-scroll">
+                <span class="typewriter-text" data-texts='["Reversible Interventions", "Decision Packets", "Audit-Backed Policy Actions"]'>Reversible Interventions</span>
+            </h1>
+            <p class="page-subtitle animate-on-scroll">
+                Transforming detected capability mismatches into auditable, measurable and reversible skill-development interventions with defined success criteria and scheduled review checkpoints.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section">
+        <div class="container">
+            
+            <!-- Core Concept Highlight Banner -->
+            <div class="glow-card green animate-on-scroll mb-5">
+                <div class="card-icon" style="color: var(--neon-green);"><i class="fas fa-undo-alt fa-2x"></i></div>
+                <h3 class="gradient-text">The Reversible Intervention Principle</h3>
+                <p>
+                    SkillPulse enforces that every policy recommendation, curriculum adjustment, and resource reallocation must not be a static mandate. Instead, each intervention is treated as an empirical hypothesis: bounded in time, measurable through target indicators, backed by a SHOW ME WHY audit trail, and fully reversible if observed outcome signals diverge from the expected trajectory.
+                </p>
+            </div>
+
+            <!-- The Decision Packet Breakdown -->
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Anatomy of a Decision Packet</h2>
+                <p class="section-subtitle">Six mandatory pillars included in every generated intervention</p>
+            </div>
+
+            <div class="grid-3 mb-5">
+                <div class="glow-card blue animate-on-scroll stagger-1">
+                    <div class="card-number">01</div>
+                    <div class="card-icon"><i class="fas fa-file-invoice-dollar fa-lg text-cyan"></i></div>
+                    <h3>Fused Evidence Base</h3>
+                    <p>Aggregates multi-source demand observations, job posts, employer consultations, and government surveys with recorded confidence intervals.</p>
+                </div>
+
+                <div class="glow-card green animate-on-scroll stagger-2">
+                    <div class="card-number">02</div>
+                    <div class="card-icon"><i class="fas fa-exclamation-triangle fa-lg text-green"></i></div>
+                    <h3>Mismatch Dimension</h3>
+                    <p>Identifies whether the bottleneck is Curriculum Coverage, Capacity Seats, Trainer Competency, or Lab Equipment Readiness.</p>
+                </div>
+
+                <div class="glow-card purple animate-on-scroll stagger-3">
+                    <div class="card-number">03</div>
+                    <div class="card-icon"><i class="fas fa-chart-line fa-lg text-purple"></i></div>
+                    <h3>Confidence & Uncertainty</h3>
+                    <p>Quantifies observation strength, separates digital observability from real demand, and explicitly flags unobserved candidate outcomes.</p>
+                </div>
+
+                <div class="glow-card yellow animate-on-scroll stagger-4">
+                    <div class="card-number">04</div>
+                    <div class="card-icon"><i class="fas fa-bullseye fa-lg text-yellow"></i></div>
+                    <h3>Specific Action</h3>
+                    <p>Prescribes actionable adjustments: curriculum addendum, master-trainer workshop, mobile lab equipment sharing, or capacity expansion.</p>
+                </div>
+
+                <div class="glow-card cyan animate-on-scroll stagger-5">
+                    <div class="card-number">05</div>
+                    <div class="card-icon"><i class="fas fa-tachometer-alt fa-lg text-cyan"></i></div>
+                    <h3>Target Success Metric</h3>
+                    <p>Empirically verifiable criteria (e.g., 75% in-sector placement at 6-month tracer, 80% trainer certification in 5-axis CNC).</p>
+                </div>
+
+                <div class="glow-card pink animate-on-scroll stagger-6">
+                    <div class="card-number">06</div>
+                    <div class="card-icon"><i class="fas fa-calendar-check fa-lg text-pink"></i></div>
+                    <h3>Scheduled Review Point</h3>
+                    <p>Pre-programmed audit horizon (3, 6, or 12 months) where the system triggers automated outcome verification and rollback evaluation.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Active Interventions Table -->
+            <div class="glow-card animate-on-scroll mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                    <div>
+                        <h3 class="gradient-text mb-1"><i class="fas fa-tasks mr-2"></i> Live Pilot Interventions Tracker</h3>
+                        <p class="text-secondary small">Current state of active interventions generated by the SkillPulse Alignment Engine</p>
+                    </div>
+                    <span class="badge" style="background: rgba(0, 255, 136, 0.2); color: var(--neon-green); border: 1px solid var(--neon-green); padding: 8px 16px;">
+                        ● 3 PILOTS ACTIVE
+                    </span>
+                </div>
+
+                <div class="table-responsive" style="overflow-x: auto;">
+                    <table class="alignment-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">ID</th>
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">Type</th>
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">Target Skill</th>
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">Prescribed Action</th>
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">Success Metric</th>
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">Review Point</th>
+                                <th style="padding: 14px; font-family: 'Orbitron'; color: var(--neon-cyan);">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 14px; font-family: 'JetBrains Mono'; color: var(--neon-blue);">INT_001</td>
+                                <td style="padding: 14px;"><span class="chip" style="background: rgba(0,191,255,0.15); color: var(--neon-blue); padding: 4px 10px; border-radius: 20px;">Curriculum Update</span></td>
+                                <td style="padding: 14px; font-weight: 600;">CNC Programming</td>
+                                <td style="padding: 14px; color: var(--text-secondary);">Add 5-axis CNC programming module to ITI Machinist syllabus across Pune & Nagpur clusters</td>
+                                <td style="padding: 14px; color: var(--neon-green);">80% competency in 5-axis operations within 6 months</td>
+                                <td style="padding: 14px; font-family: 'JetBrains Mono';">2024-Q2</td>
+                                <td style="padding: 14px;"><span style="color: var(--neon-yellow);"><i class="fas fa-spinner fa-spin mr-1"></i> In Progress</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 14px; font-family: 'JetBrains Mono'; color: var(--neon-blue);">INT_002</td>
+                                <td style="padding: 14px;"><span class="chip" style="background: rgba(168,85,247,0.15); color: var(--neon-purple); padding: 4px 10px; border-radius: 20px;">Trainer Development</span></td>
+                                <td style="padding: 14px; font-weight: 600;">Data Analytics</td>
+                                <td style="padding: 14px; color: var(--text-secondary);">Upskill 50 regional vocational instructors in Python & SQL foundations via industry apprenticeship</td>
+                                <td style="padding: 14px; color: var(--neon-green);">All 50 instructors industry-certified in 3 months</td>
+                                <td style="padding: 14px; font-family: 'JetBrains Mono';">2024-Q1</td>
+                                <td style="padding: 14px;"><span style="color: var(--neon-cyan);"><i class="fas fa-clock mr-1"></i> Planned</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 14px; font-family: 'JetBrains Mono'; color: var(--neon-blue);">INT_003</td>
+                                <td style="padding: 14px;"><span class="chip" style="background: rgba(251,191,36,0.15); color: var(--neon-yellow); padding: 4px 10px; border-radius: 20px;">Equipment Planning</span></td>
+                                <td style="padding: 14px; font-weight: 600;">AI/ML Basics</td>
+                                <td style="padding: 14px; color: var(--text-secondary);">Procure GPU-equipped compute nodes across 5 hub centres with shared cloud pooling for rural ITIs</td>
+                                <td style="padding: 14px; color: var(--neon-green);">Operational GPU labs & 500 trainees enrolled</td>
+                                <td style="padding: 14px; font-family: 'JetBrains Mono';">2024-Q3</td>
+                                <td style="padding: 14px;"><span style="color: var(--neon-pink);"><i class="fas fa-search mr-1"></i> Under Review</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Closed-Loop Feedback Flow -->
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">The 8-Step Closed-Loop Lifecycle</h2>
+                <p class="section-subtitle">How every intervention moves from signal detection to next-cycle learning</p>
+            </div>
+
+            <div class="arch-flow animate-on-scroll">
+                <div class="arch-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content glow-card blue">
+                        <h3>1. Detect Signal / Mismatch</h3>
+                        <p>Market intelligence detects surging employer requirement (e.g., 67% of machine posts mandate CNC) with zero curriculum coverage.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content glow-card green">
+                        <h3>2. Audit Provenance via SHOW ME WHY</h3>
+                        <p>Human decision-makers inspect underlying employer surveys, job scrape dates, and source weights to rule out phantom signals.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content glow-card purple">
+                        <h3>3. Quantify Uncertainty & Range</h3>
+                        <p>Expose response selection bias, rural observability limits, and candidate unobserved outcomes instead of assuming worst-case defaults.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content glow-card yellow">
+                        <h3>4. Map Economic Corridors</h3>
+                        <p>Contextualize training centres against industrial travel corridors (e.g., Pune-Chakan auto hub) rather than strict administrative borders.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content glow-card cyan">
+                        <h3>5. Formulate Reversible Proposal</h3>
+                        <p>Produce concrete action packet: curriculum pilot, trainer workshop, or equipment sharing with human sign-off.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content glow-card pink">
+                        <h3>6. Bind Success Metric & Review Point</h3>
+                        <p>Commit to empirical milestone (e.g., 75% in-sector retention) with an irreversible audit date.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content glow-card green">
+                        <h3>7. Execute & Track Pilot State</h3>
+                        <p>Live monitoring of training progress, lab utilization, and initial candidate certifications.</p>
+                    </div>
+                </div>
+
+                <div class="arch-step">
+                    <div class="step-number">8</div>
+                    <div class="step-content glow-card purple">
+                        <h3>8. Measure Outcomes & Feed Back</h3>
+                        <p>Tracer data validates if trainees entered target roles. Validated findings update prior entity weights for the next planning cycle.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-tagline">
+            EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK
+        </div>
+        <p class="footer-copy">© 2024 SkillPulse | Built by Team Veyronix. Designed for Continuous Skill Planning.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

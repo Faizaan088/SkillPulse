@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPulse | Skill Intelligence & Canonical Taxonomy</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Scoped Neon Accents & Page Enhancement */
+        .page-hero {
+            min-height: 48vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(168, 85, 247, 0.15) 0%, rgba(6, 10, 19, 0.95) 75%);
+            padding: 130px 20px 40px;
+            border-bottom: 1px solid rgba(0, 191, 255, 0.15);
+        }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-purple), transparent);
+        }
+        .breadcrumb {
+            background: rgba(12, 18, 35, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        .breadcrumb a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 8px;
+        }
+        .breadcrumb .current {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* 4-Side Neon Glow Card Enhancements */
+        .glow-card {
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+        }
+        .glow-card.cyan:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.35), inset 0 0 15px rgba(34, 211, 238, 0.15);
+        }
+        .glow-card.green:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.35), inset 0 0 15px rgba(0, 255, 136, 0.15);
+        }
+        .glow-card.purple:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
+        }
+        .glow-card.yellow:hover {
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.35), inset 0 0 15px rgba(251, 191, 36, 0.15);
+        }
+        .glow-card.pink:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.35), inset 0 0 15px rgba(236, 72, 153, 0.15);
+        }
+        .glow-card.blue:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.35), inset 0 0 15px rgba(0, 191, 255, 0.15);
+        }
+
+        /* Custom Badges & Code Tags */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .chip.green { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0,255,136,0.1); }
+        .chip.cyan { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(34,211,238,0.1); }
+        .chip.purple { border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(168,85,247,0.1); }
+        .chip.yellow { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(251,191,36,0.1); }
+        .chip.pink { border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(236,72,153,0.1); }
+        .chip.blue { border-color: var(--neon-blue); color: var(--neon-blue); background: rgba(0,191,255,0.1); }
+
+        /* Neon Table Styles */
+        .neon-table-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            overflow-x: auto;
+            backdrop-filter: blur(16px);
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .neon-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .neon-table th {
+            padding: 16px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            border-bottom: 2px solid rgba(0, 191, 255, 0.25);
+            background: rgba(0, 191, 255, 0.03);
+        }
+        .neon-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: middle;
+            transition: background 0.2s;
+        }
+        .neon-table tr:hover td {
+            background: rgba(0, 191, 255, 0.04);
+        }
+        .neon-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Interactive Graph Sandbox */
+        .graph-viewport {
+            height: 380px;
+            background: radial-gradient(circle at center, #0f1c3a 0%, #060a13 80%);
+            border-radius: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px 0;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 0 30px rgba(168,85,247,0.15);
+        }
+        .graph-node {
+            position: absolute;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 20px currentColor;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2;
+        }
+        .graph-node:hover {
+            transform: scale(1.15);
+            z-index: 10;
+        }
+        .node-center {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            top: 48%;
+            left: 48%;
+            transform: translate(-50%, -50%);
+        }
+        .node-1 {
+            background: rgba(34, 211, 238, 0.15);
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            top: 20%;
+            left: 22%;
+        }
+        .node-2 {
+            background: rgba(168, 85, 247, 0.15);
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            top: 22%;
+            right: 22%;
+        }
+        .node-3 {
+            background: rgba(251, 191, 36, 0.15);
+            border: 2px solid var(--neon-yellow);
+            color: var(--neon-yellow);
+            bottom: 22%;
+            left: 26%;
+        }
+        .node-4 {
+            background: rgba(236, 72, 153, 0.15);
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
+            bottom: 20%;
+            right: 24%;
+        }
+        .graph-svg-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .edge-line {
+            stroke-dasharray: 6;
+            animation: dash 20s linear infinite;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
+        }
+
+        /* Flow Diagram Enhanced */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .flow-step {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            padding: 22px 16px;
+            border-radius: 14px;
+        }
+        .flow-arrow {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            animation: float 2s infinite ease-in-out;
+        }
+
+        /* Metric Progress Bars */
+        .metric-bar-wrap {
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            height: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .metric-bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px currentColor;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-bolt text-glow"></i> ⚡ SKILLPULSE
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Dashboard</a>
+                <a href="skill-intelligence.html" class="active">Skill Taxonomy</a>
+                <a href="supply-outcomes.html">Supply &amp; Outcomes</a>
+                <a href="emerging-skills.html">Emerging Skills</a>
+                <a href="geography.html">Economic Geography</a>
+                <a href="architecture.html">Architecture</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle dark/light mode">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero with Typewriter Header -->
+    <header class="page-hero">
+        <div class="hero-content animate-on-scroll">
+            <div class="hero-badge"><i class="fas fa-network-wired"></i> Ontology &amp; Graph Intelligence</div>
+            <h1 class="hero-title">
+                <span class="gradient-text typewriter-text" data-texts='["Skill Intelligence", "Canonical Taxonomy", "Multilingual Mapping", "3D Knowledge Graph"]'>Skill Intelligence</span>
+            </h1>
+            <p class="hero-subtitle typewriter-text" data-texts='["Disambiguating unstructured job expressions into canonical competencies, multilingual aliases, and graph relationships."]'>
+                Disambiguating unstructured job expressions into canonical competencies, multilingual aliases, and graph relationships.
+            </p>
+            <div class="hero-buttons">
+                <a href="#taxonomy-matrix" class="btn-primary"><i class="fas fa-table"></i> Canonical Registry</a>
+                <a href="#graph-explorer" class="btn-secondary"><i class="fas fa-project-diagram"></i> 3D Relationship Graph</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb animate-on-scroll">
+        <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <span>&gt;</span>
+            <span class="current">Skill Intelligence &amp; Canonical Taxonomy</span>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="section">
+
+        <!-- Stats Counter Row -->
+        <div class="stats-row animate-on-scroll">
+            <div class="stat-box glow-card cyan float">
+                <div class="number counter-anim" data-target="14850">14,850</div>
+                <div class="label">Canonical Competencies</div>
+            </div>
+            <div class="stat-box glow-card green float" style="animation-delay: 0.2s;">
+                <div class="number counter-anim" data-target="52400">52,400</div>
+                <div class="label">Multilingual Aliases</div>
+            </div>
+            <div class="stat-box glow-card purple float" style="animation-delay: 0.4s;">
+                <div class="number counter-anim" data-target="96">96%</div>
+                <div class="label">Disambiguation Accuracy</div>
+            </div>
+            <div class="stat-box glow-card pink float" style="animation-delay: 0.6s;">
+                <div class="number counter-anim" data-target="3200000">3.2M</div>
+                <div class="label">Graph Relationship Edges</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Canonical Ontology vs. Raw Expressions -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Canonical <span class="gradient-text">vs. Raw Values</span></h2>
+                <p class="section-subtitle">Why SkillPulse preserves raw linguistic provenance while resolving immutable canonical IDs</p>
+            </div>
+
+            <div class="grid-2 stagger-1">
+                <div class="glow-card blue animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-blue);"><i class="fas fa-file-invoice"></i></div>
+                    <span class="card-number">RAW PROVENANCE</span>
+                    <h3>The Problem of Raw Expressions</h3>
+                    <p>Real-world vocational hiring does not follow textbook terminology. Employers and contractors write job notices using fragmented terminology, phonetic spellings, regional dialectical variations, and trade colloquialisms.</p>
+                    <ul>
+                        <li><strong>Spelling Variations:</strong> "Tork wielder", "Arck weldr", "Weldor MIG"</li>
+                        <li><strong>Regional Jargon:</strong> "Turnery master", "Setter-operator", "Helper-fitter"</li>
+                        <li><strong>Linguistic Mix:</strong> "सीएनसी ऑपरेटर", "CNC karigar", "Fitting ka mistri"</li>
+                        <li><strong>Risk of Naive Scraping:</strong> Creating 50 duplicate skills for the exact same physical competency, distorting demand signals by up to 400%.</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card green animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-green);"><i class="fas fa-fingerprint"></i></div>
+                    <span class="card-number">CANONICAL MAPPING</span>
+                    <h3>The SkillPulse Canonical Resolution</h3>
+                    <p>Instead of discarding raw text or allowing unconstrained synonym explosion, SkillPulse applies a strict, dual-layer architecture: every mention resolves to an immutable <strong>Canonical Skill ID</strong> with mathematical confidence.</p>
+                    <ul>
+                        <li><strong>Deterministic ID:</strong> <code>SKILL-MCH-0482</code> represents Gas Tungsten Arc Welding (TIG).</li>
+                        <li><strong>Auditability ("Show Me Why"):</strong> The original raw string, source URL, timestamp, and employer context are permanently linked to the canonical binding.</li>
+                        <li><strong>NSQF Aligned:</strong> Bound to National Skills Qualification Framework QP/NOS standards.</li>
+                        <li><strong>Multi-Dimensional Vectors:</strong> 768-dimensional semantic embeddings capture cross-domain proximity.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Flow Step: Raw to Canonical -->
+            <div class="flow-diagram animate-on-scroll stagger-2">
+                <div class="flow-step glow-card yellow">
+                    <span class="chip yellow mb-2">RAW INPUT</span>
+                    <h4 style="margin: 8px 0; font-size: 1rem;">"Tork Wielder / MIG Mistri"</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Unstructured Pune MIDC job notice</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step glow-card cyan">
+                    <span class="chip cyan mb-2">NLP GATEWAY</span>
+                    <h4 style="margin: 8px 0; font-size: 1rem;">Phonetic &amp; Vector Match</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Metaphone + IndicBERT tokenization</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step glow-card purple">
+                    <span class="chip purple mb-2">CONFIDENCE: 94.6%</span>
+                    <h4 style="margin: 8px 0; font-size: 1rem;">Disambiguation Engine</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Co-occurrence validation with sector</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step glow-card green">
+                    <span class="chip green mb-2">CANONICAL ENTITY</span>
+                    <h4 style="margin: 8px 0; font-size: 1rem;"><code>SKILL-WLD-0112</code></h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">GMAW / MIG Semi-Auto Welding (NSQF 4)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Canonical Skill ID Registry Table -->
+        <section class="section-container animate-on-scroll" id="taxonomy-matrix">
+            <div class="section-header text-center">
+                <h2 class="section-title">Canonical <span class="gradient-text">ID Taxonomy Registry</span></h2>
+                <p class="section-subtitle">Live sample of the enterprise vocational skill ontology across primary industrial verticals</p>
+            </div>
+
+            <div class="neon-table-wrapper glow-card blue animate-on-scroll">
+                <table class="neon-table">
+                    <thead>
+                        <tr>
+                            <th>Canonical Skill ID</th>
+                            <th>Standard Skill Title</th>
+                            <th>Domain / Sector</th>
+                            <th>NSQF Level</th>
+                            <th>Primary Aliases Tracked</th>
+                            <th>Confidence</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>SKILL-AUTO-0104</code></td>
+                            <td><strong>EV Battery Pack Assembly &amp; Testing</strong></td>
+                            <td>Automotive / Green Mobility</td>
+                            <td><span class="chip cyan">Level 5</span></td>
+                            <td>EV battery fitter, pack wiring tech, सेल असेंब्ली</td>
+                            <td>
+                                <span style="color: var(--neon-green); font-weight: 700;">98.2%</span>
+                                <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 98%; background: var(--neon-green);"></div></div>
+                            </td>
+                            <td><span class="chip green"><i class="fas fa-check-circle"></i> Validated</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>SKILL-MCH-0220</code></td>
+                            <td><strong>5-Axis CNC Milling Programming</strong></td>
+                            <td>Capital Goods &amp; Machining</td>
+                            <td><span class="chip purple">Level 6</span></td>
+                            <td>CNC 5 axis operator, VMC programmer, खराद मास्टर</td>
+                            <td>
+                                <span style="color: var(--neon-cyan); font-weight: 700;">95.4%</span>
+                                <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 95%; background: var(--neon-cyan);"></div></div>
+                            </td>
+                            <td><span class="chip green"><i class="fas fa-check-circle"></i> Validated</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>SKILL-WLD-0112</code></td>
+                            <td><strong>Gas Metal Arc Welding (GMAW / MIG)</strong></td>
+                            <td>Heavy Fabrication</td>
+                            <td><span class="chip cyan">Level 4</span></td>
+                            <td>MIG welder, CO2 welding mistri, वेल्डर कारागीर</td>
+                            <td>
+                                <span style="color: var(--neon-green); font-weight: 700;">99.1%</span>
+                                <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 99%; background: var(--neon-green);"></div></div>
+                            </td>
+                            <td><span class="chip green"><i class="fas fa-check-circle"></i> Validated</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>SKILL-ELEC-0305</code></td>
+                            <td><strong>PLC Ladder Logic &amp; SCADA Interfacing</strong></td>
+                            <td>Electronics &amp; Automation</td>
+                            <td><span class="chip purple">Level 5</span></td>
+                            <td>PLC programmer, automation tech, पीएलसी प्रोग्रामिंग</td>
+                            <td>
+                                <span style="color: var(--neon-yellow); font-weight: 700;">91.8%</span>
+                                <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 92%; background: var(--neon-yellow);"></div></div>
+                            </td>
+                            <td><span class="chip green"><i class="fas fa-check-circle"></i> Validated</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>SKILL-SOL-0044</code></td>
+                            <td><strong>Rooftop Solar PV Installation &amp; Grid-Tie</strong></td>
+                            <td>Renewable Energy</td>
+                            <td><span class="chip cyan">Level 4</span></td>
+                            <td>Surya Mitra, solar panel installer, सोलर फिटिंग वाला</td>
+                            <td>
+                                <span style="color: var(--neon-pink); font-weight: 700;">88.6%</span>
+                                <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 88%; background: var(--neon-pink);"></div></div>
+                            </td>
+                            <td><span class="chip yellow"><i class="fas fa-clock"></i> Monitored</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 3: Multilingual Aliases (Hindi, Marathi, Hinglish) -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Multilingual <span class="gradient-text">Alias Resolution Engine</span></h2>
+                <p class="section-subtitle">Bridging formal English qualification standards with real-world Indian vocational vernaculars</p>
+            </div>
+
+            <div class="grid-3 stagger-1">
+                <div class="glow-card purple animate-on-scroll">
+                    <div class="card-icon" style="color: var(--neon-purple);"><i class="fas fa-language"></i></div>
+                    <h3>Hindi (हिंदी) Vernaculars</h3>
+                    <p>Captures standard Devanagari script and northern industrial corridor colloquialisms.</p>
+                    <div style="background: rgba(0,0,0,0.25); padding: 14px; border-radius: 10px; margin-top: 15px; font-size: 0.85rem;">
+                        <p><strong style="color: var(--neon-cyan);">सीएनसी लेथ कारीगर</strong> → <code>SKILL-MCH-0089</code></p>
+                        <p><strong style="color: var(--neon-cyan);">बिजली वायरिंग मिस्त्री</strong> → <code>SKILL-ELEC-0014</code></p>
+                        <p><strong style="color: var(--neon-cyan);">मोटर रिपेयरिंग फिटर</strong> → <code>SKILL-AUTO-0021</code></p>
+                    </div>
+                </div>
+
+                <div class="glow-card cyan animate-on-scroll">
+                    <div class="card-icon" style="color: var(--neon-cyan);"><i class="fas fa-om"></i></div>
+                    <h3>Marathi (मराठी) Dialects</h3>
+                    <p>Accounts for Western Maharashtra shopfloor terminology (Pune, Nashik, Chakan belt).</p>
+                    <div style="background: rgba(0,0,0,0.25); padding: 14px; border-radius: 10px; margin-top: 15px; font-size: 0.85rem;">
+                        <p><strong style="color: var(--neon-green);">खराद कामगार / टर्नर</strong> → <code>SKILL-MCH-0089</code></p>
+                        <p><strong style="color: var(--neon-green);">वेल्डिंग कारागीर (टीआईजी)</strong> → <code>SKILL-WLD-0482</code></p>
+                        <p><strong style="color: var(--neon-green);">इलेक्ट्रिकल जोडणी तंत्रज्ञ</strong> → <code>SKILL-ELEC-0014</code></p>
+                    </div>
+                </div>
+
+                <div class="glow-card pink animate-on-scroll">
+                    <div class="card-icon" style="color: var(--neon-pink);"><i class="fas fa-comments"></i></div>
+                    <h3>Hinglish &amp; Shopfloor Slang</h3>
+                    <p>Addresses code-mixed phonetic expressions prevalent in WhatsApp recruitment and contractor tenders.</p>
+                    <div style="background: rgba(0,0,0,0.25); padding: 14px; border-radius: 10px; margin-top: 15px; font-size: 0.85rem;">
+                        <p><strong style="color: var(--neon-pink);">"CNC setter helper chahiye"</strong> → <code>SKILL-MCH-0089</code></p>
+                        <p><strong style="color: var(--neon-pink);">"Arck weldr urgently join"</strong> → <code>SKILL-WLD-0011</code></p>
+                        <p><strong style="color: var(--neon-pink);">"Wiring maintenance master"</strong> → <code>SKILL-ELEC-0014</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linguistic Resolution Mechanism Card -->
+            <div class="glow-card yellow animate-on-scroll mt-4">
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <div style="font-size: 3rem; color: var(--neon-yellow);"><i class="fas fa-brain"></i></div>
+                    <div style="flex: 1; min-width: 280px;">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon-yellow);">Tri-Fold Linguistic Disambiguation Matrix</h4>
+                        <p style="color: var(--text-secondary); margin-top: 6px;">SkillPulse executes: (1) Double Metaphone phonetic indexing for English/Hinglish misspellings, (2) IndicBERT multi-lingual semantic embedding vectors for Hindi and Marathi scripts, and (3) Employer sector context conditioning to ensure a "Fitter" in a textile mill resolves differently from a "Fitter" in an aero-engine manufacturing plant.</p>
+                    </div>
+                    <div>
+                        <span class="chip yellow" style="font-size: 0.85rem; padding: 8px 16px;">Zero English-Only Bias</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: 3D Relationship Graph Concept -->
+        <section class="section-container animate-on-scroll" id="graph-explorer">
+            <div class="section-header text-center">
+                <h2 class="section-title">3D Skill <span class="gradient-text">Relationship Graph</span></h2>
+                <p class="section-subtitle">Multi-dimensional topology mapping hierarchical, co-occurrence, upskill transition, and complementary edges</p>
+            </div>
+
+            <div class="glow-card purple animate-on-scroll">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <h3 style="margin-bottom: 4px;"><i class="fas fa-cube text-glow"></i> Interactive Topology Canvas (Sample: Mechatronics Cluster)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Hover nodes to inspect transition vectors and edge weights</p>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="chip green">● Parent-Child</span>
+                        <span class="chip cyan">● Co-Occurrence</span>
+                        <span class="chip purple">● Upskill Vector</span>
+                        <span class="chip yellow">● Complementary</span>
+                    </div>
+                </div>
+
+                <!-- 3D Graph Mock Viewport -->
+                <div class="graph-viewport">
+                    <svg class="graph-svg-lines" viewBox="0 0 800 380" preserveAspectRatio="none">
+                        <!-- Connecting Lines with Dash Animation -->
+                        <line x1="384" y1="182" x2="176" y2="76" stroke="rgba(34, 211, 238, 0.6)" stroke-width="2" class="edge-line" />
+                        <line x1="384" y1="182" x2="624" y2="83" stroke="rgba(168, 85, 247, 0.6)" stroke-width="2.5" class="edge-line" />
+                        <line x1="384" y1="182" x2="208" y2="296" stroke="rgba(251, 191, 36, 0.6)" stroke-width="2" class="edge-line" />
+                        <line x1="384" y1="182" x2="608" y2="304" stroke="rgba(236, 72, 153, 0.6)" stroke-width="1.8" class="edge-line" />
+                        <line x1="176" y1="76" x2="624" y2="83" stroke="rgba(0, 255, 136, 0.25)" stroke-width="1" stroke-dasharray="4" />
+                    </svg>
+
+                    <!-- Interactive Floating Nodes -->
+                    <div class="graph-node node-center" title="Core Cluster Anchor">
+                        <i class="fas fa-microchip"></i> MECHATRONICS CORE<br><small>SKILL-MCH-0100</small>
+                    </div>
+                    <div class="graph-node node-1" title="Co-occurrence Edge: Weight 0.88">
+                        <i class="fas fa-code-branch"></i> PLC LADDER LOGIC<br><small>Edge W: 0.88</small>
+                    </div>
+                    <div class="graph-node node-2" title="Upskill Transition Edge: Weight 0.94">
+                        <i class="fas fa-robot"></i> COBOT CALIBRATION<br><small>Upskill Dist: 40h</small>
+                    </div>
+                    <div class="graph-node node-3" title="Complementary Skill: Weight 0.76">
+                        <i class="fas fa-bolt"></i> SENSOR DIAGNOSTICS<br><small>Complementary: 0.76</small>
+                    </div>
+                    <div class="graph-node node-4" title="Parent Architecture Node">
+                        <i class="fas fa-cogs"></i> CNC MOTION CTRL<br><small>Cross-Domain: Auto</small>
+                    </div>
+                </div>
+
+                <div class="grid-4 stagger-1 mt-4">
+                    <div class="glow-card green p-3">
+                        <h4 style="font-size: 0.95rem; color: var(--neon-green);"><i class="fas fa-sitemap"></i> Taxonomic Edges</h4>
+                        <p style="font-size: 0.85rem; margin-top: 6px;">Strict Is-A inheritance hierarchy derived from occupational bodies.</p>
+                    </div>
+                    <div class="glow-card cyan p-3">
+                        <h4 style="font-size: 0.95rem; color: var(--neon-cyan);"><i class="fas fa-link"></i> Co-Occurrence Edges</h4>
+                        <p style="font-size: 0.85rem; margin-top: 6px;">Empirical clustering of skills co-requested in live job postings.</p>
+                    </div>
+                    <div class="glow-card purple p-3">
+                        <h4 style="font-size: 0.95rem; color: var(--neon-purple);"><i class="fas fa-route"></i> Transition Distance</h4>
+                        <p style="font-size: 0.85rem; margin-top: 6px;">Mathematical training hours required to bridge Skill A to Skill B.</p>
+                    </div>
+                    <div class="glow-card pink p-3">
+                        <h4 style="font-size: 0.95rem; color: var(--neon-pink);"><i class="fas fa-project-diagram"></i> Complementarity</h4>
+                        <p style="font-size: 0.85rem; margin-top: 6px;">Cross-disciplinary multipliers enhancing candidate wage potential.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Confidence Scoring Engine -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Confidence <span class="gradient-text">Scoring &amp; Disambiguation</span></h2>
+                <p class="section-subtitle">Mathematical formula balancing lexical overlap, semantic proximity, and source verification weights</p>
+            </div>
+
+            <div class="grid-2 stagger-1">
+                <div class="glow-card cyan animate-on-scroll">
+                    <h3><i class="fas fa-square-root-variable"></i> Scoring Formulation</h3>
+                    <p>Every canonical association is assigned a rigorous composite score between <code>0.00</code> and <code>1.00</code>:</p>
+                    
+                    <div style="background: rgba(6, 10, 19, 0.85); border: 1px solid var(--neon-cyan); border-radius: 12px; padding: 20px; margin: 18px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--neon-cyan);">
+                        Confidence = (w₁ · Sim_lexical) + (w₂ · Sim_semantic) + (w₃ · Ctx_cooccurrence) + (w₄ · Rel_source)
+                    </div>
+
+                    <ul style="font-size: 0.9rem; line-height: 1.8;">
+                        <li><strong>w₁ (0.25):</strong> Jaro-Winkler string similarity &amp; phonetic edit distance.</li>
+                        <li><strong>w₂ (0.35):</strong> Cosine similarity between 768-d domain vector embeddings.</li>
+                        <li><strong>w₃ (0.25):</strong> Bayesian co-occurrence likelihood within the posting's designated sector.</li>
+                        <li><strong>w₄ (0.15):</strong> Verified reliability coefficient of the reporting source.</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card green animate-on-scroll">
+                    <h3><i class="fas fa-sliders-h"></i> Action Threshold Rules</h3>
+                    <p>How the SkillPulse decision engine routes signals based on their computed confidence score:</p>
+
+                    <div style="margin-top: 15px;">
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem;">
+                                <span style="color: var(--neon-green);">Score &gt; 0.85: Automated Canonical Binding</span>
+                                <span>High Trust</span>
+                            </div>
+                            <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 85%; background: var(--neon-green);"></div></div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Directly ingested into the supply-demand matching matrix without human review.</p>
+                        </div>
+
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem;">
+                                <span style="color: var(--neon-yellow);">Score 0.60 – 0.85: Flagged for Master Review</span>
+                                <span>Human-in-the-Loop</span>
+                            </div>
+                            <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 65%; background: var(--neon-yellow);"></div></div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Queued in the Sector Skill Council (SSC) validator dashboard for one-click confirmation.</p>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem;">
+                                <span style="color: var(--neon-pink);">Score &lt; 0.60: Sent to Emerging Skills Discovery</span>
+                                <span>Candidate Entity</span>
+                            </div>
+                            <div class="metric-bar-wrap"><div class="metric-bar-fill" style="width: 45%; background: var(--neon-pink);"></div></div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Treated as a potentially novel industrial competency and transferred to the Skillness Gate pipeline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-main" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; margin-bottom: 40px;">
+                <div class="footer-brand" style="flex: 2; min-width: 280px;">
+                    <h3 class="nav-logo" style="margin-bottom: 12px; font-size: 1.6rem;">⚡ SKILLPULSE</h3>
+                    <p style="color: var(--text-secondary); max-width: 420px; line-height: 1.6;">
+                        Evidence-to-Action Intelligence Layer for Continuous Skill Planning. Resolving fragmented industrial, training, and outcome evidence into auditable interventions.
+                    </p>
+                    <p class="footer-team" style="margin-top: 15px; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+                        Built by Team Veyronix | PS 134 Solution
+                    </p>
+                </div>
+                <div class="footer-links" style="flex: 1; min-width: 180px;">
+                    <h4 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 16px; font-size: 1rem;">Core Pages</h4>
+                    <p style="margin-bottom: 8px;"><a href="../index.html" style="color: var(--text-secondary); text-decoration: none;">Dashboard</a></p>
+                    <p style="margin-bottom: 8px;"><a href="skill-intelligence.html" style="color: var(--neon-blue); text-decoration: none;">Skill Taxonomy</a></p>
+                    <p style="margin-bottom: 8px;"><a href="supply-outcomes.html" style="color: var(--text-secondary); text-decoration: none;">Supply &amp; Outcomes</a></p>
+                    <p style="margin-bottom: 8px;"><a href="emerging-skills.html" style="color: var(--text-secondary); text-decoration: none;">Emerging Skills</a></p>
+                </div>
+                <div class="footer-links" style="flex: 1; min-width: 180px;">
+                    <h4 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 16px; font-size: 1rem;">Deep Dives</h4>
+                    <p style="margin-bottom: 8px;"><a href="geography.html" style="color: var(--text-secondary); text-decoration: none;">Economic Geography</a></p>
+                    <p style="margin-bottom: 8px;"><a href="architecture.html" style="color: var(--text-secondary); text-decoration: none;">Full Architecture</a></p>
+                    <p style="margin-bottom: 8px;"><a href="market-intelligence.html" style="color: var(--text-secondary); text-decoration: none;">Market Intelligence</a></p>
+                    <p style="margin-bottom: 8px;"><a href="alignment-engine.html" style="color: var(--text-secondary); text-decoration: none;">Alignment Engine</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-tagline" style="border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 18px 0; margin: 20px 0;">
+                <p style="font-family: 'Orbitron'; font-size: 0.95rem; letter-spacing: 2px; color: var(--neon-cyan); margin: 0; text-align: center;">
+                    EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK
+                </p>
+            </div>
+
+            <div class="footer-bottom" style="text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: 10px;">
+                <p>&copy; 2026 SkillPulse by Team Veyronix. All rights reserved. Problem Statement 134 Implementation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

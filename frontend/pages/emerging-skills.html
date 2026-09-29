@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPulse | Emerging Skills &amp; Competency Discovery</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Scoped Neon Accents & Page Enhancement */
+        .page-hero {
+            min-height: 48vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(251, 191, 36, 0.12) 0%, rgba(6, 10, 19, 0.95) 75%);
+            padding: 130px 20px 40px;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.15);
+        }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-yellow), var(--neon-green), transparent);
+        }
+        .breadcrumb {
+            background: rgba(12, 18, 35, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        .breadcrumb a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 8px;
+        }
+        .breadcrumb .current {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* 4-Side Glow Card Effects */
+        .glow-card {
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+        }
+        .glow-card.cyan:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.35), inset 0 0 15px rgba(34, 211, 238, 0.15);
+        }
+        .glow-card.green:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.35), inset 0 0 15px rgba(0, 255, 136, 0.15);
+        }
+        .glow-card.purple:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
+        }
+        .glow-card.yellow:hover {
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.35), inset 0 0 15px rgba(251, 191, 36, 0.15);
+        }
+        .glow-card.pink:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.35), inset 0 0 15px rgba(236, 72, 153, 0.15);
+        }
+        .glow-card.blue:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.35), inset 0 0 15px rgba(0, 191, 255, 0.15);
+        }
+
+        /* Badges & Chips */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .chip.green { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0,255,136,0.1); }
+        .chip.cyan { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(34,211,238,0.1); }
+        .chip.purple { border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(168,85,247,0.1); }
+        .chip.yellow { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(251,191,36,0.1); }
+        .chip.pink { border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(236,72,153,0.1); }
+        .chip.blue { border-color: var(--neon-blue); color: var(--neon-blue); background: rgba(0,191,255,0.1); }
+        .chip.red { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.1); }
+
+        /* Neon Table */
+        .neon-table-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            overflow-x: auto;
+            backdrop-filter: blur(16px);
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .neon-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .neon-table th {
+            padding: 16px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            border-bottom: 2px solid rgba(0, 191, 255, 0.25);
+            background: rgba(0, 191, 255, 0.03);
+        }
+        .neon-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: middle;
+            transition: background 0.2s;
+        }
+        .neon-table tr:hover td {
+            background: rgba(0, 191, 255, 0.04);
+        }
+        .neon-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .flow-step {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            padding: 22px 16px;
+            border-radius: 14px;
+        }
+        .flow-arrow {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            animation: float 2s infinite ease-in-out;
+        }
+
+        /* 5-Pillar Score Bar */
+        .pillar-meter {
+            display: flex;
+            gap: 4px;
+            margin-top: 6px;
+        }
+        .pillar-dot {
+            width: 14px;
+            height: 8px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .pillar-dot.active {
+            background: var(--neon-green);
+            box-shadow: 0 0 6px var(--neon-green);
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-bolt text-glow"></i> ⚡ SKILLPULSE
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Dashboard</a>
+                <a href="skill-intelligence.html">Skill Taxonomy</a>
+                <a href="supply-outcomes.html">Supply &amp; Outcomes</a>
+                <a href="emerging-skills.html" class="active">Emerging Skills</a>
+                <a href="geography.html">Economic Geography</a>
+                <a href="architecture.html">Architecture</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle dark/light mode">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero with Typewriter Header -->
+    <header class="page-hero">
+        <div class="hero-content animate-on-scroll">
+            <div class="hero-badge"><i class="fas fa-radar"></i> Early-Warning Signal Discovery</div>
+            <h1 class="hero-title">
+                <span class="gradient-text typewriter-text" data-texts='["Emerging Skills Discovery", "The Skillness Gate", "5-Pillar Evidence Hurdle", "Curriculum Early-Warning"]'>Emerging Skills</span>
+            </h1>
+            <p class="hero-subtitle typewriter-text" data-texts='["Filtering transient job adjectives from genuine technical competencies before vocational curricula become obsolete."]'>
+                Filtering transient job adjectives from genuine technical competencies before vocational curricula become obsolete.
+            </p>
+            <div class="hero-buttons">
+                <a href="#skillness-gate" class="btn-primary"><i class="fas fa-shield-alt"></i> The Skillness Gate</a>
+                <a href="#evidence-threshold" class="btn-secondary"><i class="fas fa-check-double"></i> 5-Pillar Threshold</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb animate-on-scroll">
+        <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <span>&gt;</span>
+            <span class="current">Emerging Skills &amp; Competency Discovery</span>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="section">
+
+        <!-- Stats Row -->
+        <div class="stats-row animate-on-scroll">
+            <div class="stat-box glow-card yellow float">
+                <div class="number counter-anim" data-target="1840">1,840</div>
+                <div class="label">Unmapped Signals / Month</div>
+            </div>
+            <div class="stat-box glow-card green float" style="animation-delay: 0.2s;">
+                <div class="number counter-anim" data-target="94">94.2%</div>
+                <div class="label">Skillness Gate Noise Rejection</div>
+            </div>
+            <div class="stat-box glow-card cyan float" style="animation-delay: 0.4s;">
+                <div class="number counter-anim" data-target="42">42</div>
+                <div class="label">Validated Emerging Skills</div>
+            </div>
+            <div class="stat-box glow-card purple float" style="animation-delay: 0.6s;">
+                <div class="number counter-anim" data-target="6">6.4 Mo</div>
+                <div class="label">Curriculum Lead Time Advantage</div>
+            </div>
+        </div>
+
+        <!-- Section 1: The Skillness Gate -->
+        <section class="section-container animate-on-scroll" id="skillness-gate">
+            <div class="section-header text-center">
+                <h2 class="section-title">The <span class="gradient-text">Skillness Gate</span></h2>
+                <p class="section-subtitle">Distinguishing genuine technical competencies from job perks, shift conditions, and recruiter buzzwords</p>
+            </div>
+
+            <div class="grid-3 stagger-1">
+                <div class="glow-card green animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-green);"><i class="fas fa-wrench"></i></div>
+                    <span class="card-number">ACCEPTED</span>
+                    <h3>Genuine Competencies</h3>
+                    <p>Observable, teachable, and assessable operational capabilities acting on tools, materials, or data.</p>
+                    <div style="background: rgba(0,255,136,0.1); border-left: 3px solid var(--neon-green); padding: 12px; margin-top: 15px; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
+                        <p><strong>✓ EV Battery Thermal Management</strong></p>
+                        <p><strong>✓ 5-Axis CNC Trajectory Tuning</strong></p>
+                        <p><strong>✓ ROS2 Mobile Robot Calibration</strong></p>
+                        <p><strong>✓ SCADA Modbus Interfacing</strong></p>
+                    </div>
+                </div>
+
+                <div class="glow-card yellow animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-yellow);"><i class="fas fa-clock"></i></div>
+                    <span class="card-number">REJECTED AS CONDITION</span>
+                    <h3>Job Conditions &amp; Perks</h3>
+                    <p>Operational terms of work that belong in compensation and logistic filters, NOT educational curricula.</p>
+                    <div style="background: rgba(251,191,36,0.1); border-left: 3px solid var(--neon-yellow); padding: 12px; margin-top: 15px; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
+                        <p><strong>✗ "Rotational Night Shift"</strong> (Work Condition)</p>
+                        <p><strong>✗ "Own 2-Wheeler Required"</strong> (Asset Condition)</p>
+                        <p><strong>✗ "Free Canteen &amp; Transport"</strong> (Perk)</p>
+                        <p><strong>✗ "Urgent Joining Bonus"</strong> (Contract Terms)</p>
+                    </div>
+                </div>
+
+                <div class="glow-card pink animate-on-scroll">
+                    <div class="card-icon text-glow" style="color: var(--neon-pink);"><i class="fas fa-comment-slash"></i></div>
+                    <span class="card-number">REJECTED AS NOISE</span>
+                    <h3>Recruiter Clichés &amp; Buzzwords</h3>
+                    <p>Unmeasurable subjective adjectives frequently inserted by HR personnel with zero vocational substance.</p>
+                    <div style="background: rgba(236,72,153,0.1); border-left: 3px solid var(--neon-pink); padding: 12px; margin-top: 15px; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
+                        <p><strong>✗ "Dynamic Go-Getter"</strong> (Subjective Cliché)</p>
+                        <p><strong>✗ "Rockstar Work Ethic"</strong> (Unverifiable)</p>
+                        <p><strong>✗ "Hardworking &amp; Obedient"</strong> (Attitudinal)</p>
+                        <p><strong>✗ "Out of the Box Thinker"</strong> (Noise)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architectural Logic of Gate -->
+            <div class="glow-card cyan animate-on-scroll mt-4">
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <div style="font-size: 2.8rem; color: var(--neon-cyan);"><i class="fas fa-filter"></i></div>
+                    <div style="flex: 1; min-width: 280px;">
+                        <h4 style="font-family: 'Orbitron'; font-size: 1.15rem; color: var(--neon-cyan);">Algorithmic Discrimination Mechanics</h4>
+                        <p style="color: var(--text-secondary); margin-top: 6px; font-size: 0.9rem;">
+                            The Skillness Gate executes <strong>Dependency Tree Grammatical Parsing</strong> to verify whether candidate phrases function syntactically as direct objects of technical vocational action verbs (e.g. <em>calibrate, program, solder, machine, inspect</em>) versus adverbial clauses of condition or marketing superlatives. Non-competency phrases are diverted to compensation and location filters without polluting the skill taxonomy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Unknown Competency Pipeline -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Candidate <span class="gradient-text">Discovery Pipeline</span></h2>
+                <p class="section-subtitle">How unknown technical requirements transition from noisy vacancy feeds to curriculum candidates</p>
+            </div>
+
+            <div class="flow-diagram animate-on-scroll">
+                <div class="flow-step glow-card blue">
+                    <span class="chip blue mb-2">STAGE 1</span>
+                    <h4 style="margin: 8px 0; font-size: 0.95rem;">Unstructured Stream</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Scrapes 150+ job portals, tenders &amp; industrial notices</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step glow-card purple">
+                    <span class="chip purple mb-2">STAGE 2</span>
+                    <h4 style="margin: 8px 0; font-size: 0.95rem;">Canonical Negation</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Matches known taxonomy; isolates unmapped entities</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step glow-card yellow">
+                    <span class="chip yellow mb-2">STAGE 3</span>
+                    <h4 style="margin: 8px 0; font-size: 0.95rem;">Skillness Gate</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Filters out perks, conditions &amp; subjective noise</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step glow-card green">
+                    <span class="chip green mb-2">STAGE 4</span>
+                    <h4 style="margin: 8px 0; font-size: 0.95rem;">5-Pillar Audit</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Mathematical validation against evidence hurdles</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The 5-Pillar Evidence Threshold -->
+        <section class="section-container animate-on-scroll" id="evidence-threshold">
+            <div class="section-header text-center">
+                <h2 class="section-title">The 5-Pillar <span class="gradient-text">Evidence Hurdle</span></h2>
+                <p class="section-subtitle">Preventing knee-jerk syllabus changes by enforcing rigorous statistical proof of sustained industrial demand</p>
+            </div>
+
+            <div class="grid-5 stagger-1">
+                <div class="glow-card green p-3 animate-on-scroll">
+                    <div style="font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon-green); margin-bottom: 6px;">01</div>
+                    <h4 style="font-size: 0.95rem; color: #fff;">Repetition</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                        Must appear in at least <strong>N &ge; 25</strong> unique job listings across the targeted economic corridor.
+                    </p>
+                    <span class="chip green mt-2">Volume Proof</span>
+                </div>
+
+                <div class="glow-card cyan p-3 animate-on-scroll">
+                    <div style="font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon-cyan); margin-bottom: 6px;">02</div>
+                    <h4 style="font-size: 0.95rem; color: #fff;">Independence</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                        Must appear across at least <strong>&ge; 6 distinct</strong>, unaffiliated employer entities. Rules out single-firm staffing campaigns.
+                    </p>
+                    <span class="chip cyan mt-2">Syndicate Check</span>
+                </div>
+
+                <div class="glow-card purple p-3 animate-on-scroll">
+                    <div style="font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon-purple); margin-bottom: 6px;">03</div>
+                    <h4 style="font-size: 0.95rem; color: #fff;">Persistence</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                        Demand signal must be sustained across <strong>&gt; 90 consecutive days</strong>. Eliminates transient seasonal spikes.
+                    </p>
+                    <span class="chip purple mt-2">Time-Series Proof</span>
+                </div>
+
+                <div class="glow-card yellow p-3 animate-on-scroll">
+                    <div style="font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon-yellow); margin-bottom: 6px;">04</div>
+                    <h4 style="font-size: 0.95rem; color: #fff;">Tech Relevance</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                        Cosine similarity <strong>&gt; 0.72</strong> with technical domains in the canonical knowledge graph.
+                    </p>
+                    <span class="chip yellow mt-2">Vector Proximity</span>
+                </div>
+
+                <div class="glow-card pink p-3 animate-on-scroll">
+                    <div style="font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon-pink); margin-bottom: 6px;">05</div>
+                    <h4 style="font-size: 0.95rem; color: #fff;">Qualification Gap</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                        Cross-referenced against all 1,200+ active NSQF Qualification Packs to verify zero syllabus coverage.
+                    </p>
+                    <span class="chip pink mt-2">Curriculum Void</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Live Emerging Skills Candidate Matrix -->
+        <section class="section-container animate-on-scroll">
+            <div class="section-header text-center">
+                <h2 class="section-title">Emerging Competency <span class="gradient-text">Candidate Registry</span></h2>
+                <p class="section-subtitle">Active surveillance registry tracking micro-competencies through the 5-pillar validation pipeline</p>
+            </div>
+
+            <div class="neon-table-wrapper glow-card yellow animate-on-scroll">
+                <table class="neon-table">
+                    <thead>
+                        <tr>
+                            <th>Emerging Competency Name</th>
+                            <th>Industrial Cluster</th>
+                            <th>Detected Date</th>
+                            <th>5-Pillar Scorecard</th>
+                            <th>Evidence Index</th>
+                            <th>Action Status</th>
+                            <th>Recommended Intervention</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Cobot Safety Sensor Calibration</strong><br>
+                                <small style="color: var(--text-muted);">ISO 10218-2 Collaborative Interlock</small>
+                            </td>
+                            <td>Pune-Chakan Auto Cluster</td>
+                            <td>2025-11-14</td>
+                            <td>
+                                <div class="pillar-meter">
+                                    <div class="pillar-dot active" title="Repetition: Passed"></div>
+                                    <div class="pillar-dot active" title="Independence: Passed"></div>
+                                    <div class="pillar-dot active" title="Persistence: Passed"></div>
+                                    <div class="pillar-dot active" title="Relevance: Passed"></div>
+                                    <div class="pillar-dot active" title="Gap: Passed"></div>
+                                </div>
+                                <small style="color: var(--neon-green); font-size: 0.75rem;">5 / 5 Criteria Cleared</small>
+                            </td>
+                            <td><strong style="color: var(--neon-green);">94.8%</strong></td>
+                            <td><span class="chip green"><i class="fas fa-check-circle"></i> Validated</span></td>
+                            <td>40-Hour Add-on Module for ITI Turners/Fitters</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Thermal Runaway Sensor Testing</strong><br>
+                                <small style="color: var(--text-muted);">LFP/NMC Battery Pack Diagnostic</small>
+                            </td>
+                            <td>Nashik EV Corridor</td>
+                            <td>2025-12-02</td>
+                            <td>
+                                <div class="pillar-meter">
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                </div>
+                                <small style="color: var(--neon-green); font-size: 0.75rem;">5 / 5 Criteria Cleared</small>
+                            </td>
+                            <td><strong style="color: var(--neon-cyan);">91.2%</strong></td>
+                            <td><span class="chip green"><i class="fas fa-check-circle"></i> Validated</span></td>
+                            <td>Dual-Training Apprenticeship Bolt-On</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Electrolyzer Membrane Maintenance</strong><br>
+                                <small style="color: var(--text-muted);">Green Hydrogen Anion Exchange</small>
+                            </td>
+                            <td>Nagpur Industrial Belt</td>
+                            <td>2026-01-19</td>
+                            <td>
+                                <div class="pillar-meter">
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot"></div>
+                                </div>
+                                <small style="color: var(--neon-yellow); font-size: 0.75rem;">4 / 5 (Pending QP Review)</small>
+                            </td>
+                            <td><strong style="color: var(--neon-yellow);">79.4%</strong></td>
+                            <td><span class="chip yellow"><i class="fas fa-hourglass-half"></i> Watchlist</span></td>
+                            <td>Employer Co-funded Pilot Center in MIDC</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Additive Metal Powder Post-Sintering</strong><br>
+                                <small style="color: var(--text-muted);">SLM 3D Printing Finish &amp; De-caking</small>
+                            </td>
+                            <td>Aurangabad Precision Cluster</td>
+                            <td>2026-02-08</td>
+                            <td>
+                                <div class="pillar-meter">
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot"></div>
+                                    <div class="pillar-dot active"></div>
+                                    <div class="pillar-dot active"></div>
+                                </div>
+                                <small style="color: var(--neon-pink); font-size: 0.75rem;">3 / 5 (Persistence &lt; 90d)</small>
+                            </td>
+                            <td><strong style="color: var(--neon-pink);">64.1%</strong></td>
+                            <td><span class="chip pink"><i class="fas fa-eye"></i> Surveillance</span></td>
+                            <td>Track for 45 more days before curriculum proposal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-main" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; margin-bottom: 40px;">
+                <div class="footer-brand" style="flex: 2; min-width: 280px;">
+                    <h3 class="nav-logo" style="margin-bottom: 12px; font-size: 1.6rem;">⚡ SKILLPULSE</h3>
+                    <p style="color: var(--text-secondary); max-width: 420px; line-height: 1.6;">
+                        Evidence-to-Action Intelligence Layer for Continuous Skill Planning. Resolving fragmented industrial, training, and outcome evidence into auditable interventions.
+                    </p>
+                    <p class="footer-team" style="margin-top: 15px; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+                        Built by Team Veyronix | PS 134 Solution
+                    </p>
+                </div>
+                <div class="footer-links" style="flex: 1; min-width: 180px;">
+                    <h4 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 16px; font-size: 1rem;">Core Pages</h4>
+                    <p style="margin-bottom: 8px;"><a href="../index.html" style="color: var(--text-secondary); text-decoration: none;">Dashboard</a></p>
+                    <p style="margin-bottom: 8px;"><a href="skill-intelligence.html" style="color: var(--text-secondary); text-decoration: none;">Skill Taxonomy</a></p>
+                    <p style="margin-bottom: 8px;"><a href="supply-outcomes.html" style="color: var(--text-secondary); text-decoration: none;">Supply &amp; Outcomes</a></p>
+                    <p style="margin-bottom: 8px;"><a href="emerging-skills.html" style="color: var(--neon-blue); text-decoration: none;">Emerging Skills</a></p>
+                </div>
+                <div class="footer-links" style="flex: 1; min-width: 180px;">
+                    <h4 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 16px; font-size: 1rem;">Deep Dives</h4>
+                    <p style="margin-bottom: 8px;"><a href="geography.html" style="color: var(--text-secondary); text-decoration: none;">Economic Geography</a></p>
+                    <p style="margin-bottom: 8px;"><a href="architecture.html" style="color: var(--text-secondary); text-decoration: none;">Full Architecture</a></p>
+                    <p style="margin-bottom: 8px;"><a href="market-intelligence.html" style="color: var(--text-secondary); text-decoration: none;">Market Intelligence</a></p>
+                    <p style="margin-bottom: 8px;"><a href="alignment-engine.html" style="color: var(--text-secondary); text-decoration: none;">Alignment Engine</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-tagline" style="border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 18px 0; margin: 20px 0;">
+                <p style="font-family: 'Orbitron'; font-size: 0.95rem; letter-spacing: 2px; color: var(--neon-cyan); margin: 0; text-align: center;">
+                    EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK
+                </p>
+            </div>
+
+            <div class="footer-bottom" style="text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: 10px;">
+                <p>&copy; 2026 SkillPulse by Team Veyronix. All rights reserved. Problem Statement 134 Implementation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

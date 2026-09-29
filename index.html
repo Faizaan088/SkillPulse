@@ -1,0 +1,81 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Responsive on mobile/tablet/laptop -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta name="theme-color" content="#0b1115" />
+
+    <meta
+      name="description"
+      content="SkillPulse evidence-to-action intelligence prototype"
+    />
+
+    <title>SkillPulse — Evidence to Action Intelligence</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand-block">
+          <div class="pulse-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div>
+            <span class="brand-name">SKILLPULSE</span>
+            <span class="brand-sub">PLANNING INTELLIGENCE</span>
+          </div>
+        </div>
+        <div class="cycle-badge"><span id="backend-status-dot" class="status-dot live"></span> <span id="backend-status-text">PLANNING CYCLE 03</span></div>
+        <nav id="main-nav" class="main-nav"></nav>
+        <div class="sidebar-foot">
+          <button class="method-link" data-page="system"><span>◎</span> Methodology &amp; limits</button>
+          <div class="user-row"><span class="user-initials">PD</span><span>Planning Desk</span><span class="chev">⌄</span></div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          
+          <div class="breadcrumbs"><span>MAHARASHTRA</span><b>/</b><span id="crumb-current">OVERVIEW</span></div>
+          <div class="top-actions">
+            <button id="filter-toggle" class="control-button" aria-expanded="false"><span class="filter-icon">≡</span> Scope <span id="filter-count" class="count">03</span></button>
+            <div class="command-search">
+              <span>⌕</span>
+              <input id="global-search" type="search" autocomplete="off" placeholder="Search skills, courses, districts…" aria-label="Global search" />
+              <kbd>⌘ K</kbd>
+              <div id="search-results" class="search-results" hidden></div>
+            </div>
+            <button id="quality-button" class="quality-chip" data-page="quality" aria-label="Open data quality">
+              <span class="quality-ring"><i></i></span><span>CONFIDENCE</span><strong>0.78</strong>
+            </button>
+          </div>
+        </header>
+
+        <section id="app-content" class="page-content" tabindex="-1"></section>
+      </main>
+    </div>
+
+    <aside id="filter-panel" class="filter-panel" aria-label="Intelligence filters" aria-hidden="true">
+      <div class="panel-heading"><div><span class="eyebrow">ANALYTIC SCOPE</span><h2>Focus filters</h2></div><button class="icon-button" data-close-filters aria-label="Close filters">×</button></div>
+      <label>District<select id="district-filter"></select></label>
+      <label>Sector<select id="sector-filter"></select></label>
+      <label>Evidence period<select id="period-filter"><option value="90">Last 90 days</option><option value="180">Last 180 days</option><option value="365">Last 12 months</option></select></label>
+      <div class="filter-separator"></div>
+      <fieldset><legend>Evidence sources</legend><label class="check-row"><input type="checkbox" checked data-source="employer" /> Employer signals <span>09</span></label><label class="check-row"><input type="checkbox" checked data-source="placement" /> Placement records <span>06</span></label><label class="check-row"><input type="checkbox" checked data-source="tracer" /> Tracer observations <span>04</span></label><label class="check-row"><input type="checkbox" data-source="survey" /> Industry surveys <span>03</span></label></fieldset>
+      <button id="reset-filters" class="text-action">Reset to statewide scope</button>
+    </aside>
+    <div id="scrim" class="scrim" hidden></div>
+
+    <section id="evidence-drawer" class="evidence-drawer" aria-label="Evidence chain" aria-hidden="true"></section>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPulse | Architecture Deep Dive</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-moon dark-icon"></i>
+        <i class="fas fa-sun light-icon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-bolt text-glow"></i> Skill<span class="gradient-text">Pulse</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#architecture">Architecture</a>
+                <a href="../index.html#features">Features</a>
+                <a href="../index.html#impact">Impact</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <header class="page-hero">
+        <div class="hero-content animate-on-scroll">
+            <h1 class="hero-title">The <span class="gradient-text">10-Layer</span> Architecture</h1>
+            <p class="hero-subtitle">Evidence-to-action intelligence pipeline — deep dive into every layer</p>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb animate-on-scroll">
+        <div class="container">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a> &gt; <span>Architecture Deep Dive</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content-section">
+        <div class="container">
+            
+            <!-- Layer 1 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 1:</span> Evidence Ingestion</h2>
+                    <p class="section-subtitle">The foundation of SkillPulse. Ingests evidence from multiple sources while keeping them distinct.</p>
+                </div>
+                
+                <div class="grid-4 stagger-1">
+                    <div class="glow-card blue float">
+                        <div class="icon-circle"><i class="fas fa-briefcase"></i></div>
+                        <h3>Labour-Market Evidence</h3>
+                        <p>Job postings, public employment information, employer inputs, industry consultations.</p>
+                    </div>
+                    <div class="glow-card green float">
+                        <div class="icon-circle"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3>Training Evidence</h3>
+                        <p>Training capacity, enrolment, completion, certification, available courses.</p>
+                    </div>
+                    <div class="glow-card purple float">
+                        <div class="icon-circle"><i class="fas fa-chart-line"></i></div>
+                        <h3>Outcome Evidence</h3>
+                        <p>Placement, tracer observations, retention, employer feedback.</p>
+                    </div>
+                    <div class="glow-card orange float">
+                        <div class="icon-circle"><i class="fas fa-project-diagram"></i></div>
+                        <h3>Structural Evidence</h3>
+                        <p>Qualification frameworks, occupational classifications, sector trends, industrial clusters.</p>
+                    </div>
+                </div>
+                
+                <div class="detail-card glass-card mt-4 stagger-2">
+                    <h4><i class="fas fa-key text-glow"></i> Key Principle</h4>
+                    <p>Evidence sources remain distinct so the system can explain what contributed to a signal.</p>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+
+            <!-- Layer 2 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 2:</span> Data Quality + Provenance</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="glow-card cyan stagger-1">
+                        <h3>Observation Metadata</h3>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check-circle"></i></span>Source & Date</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle"></i></span>Geography</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle"></i></span>Evidence type & Freshness</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle"></i></span>Geographic precision & Confidence</li>
+                        </ul>
+                    </div>
+                    <div class="glow-card yellow stagger-2">
+                        <h3>Core Mechanics</h3>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-user-shield"></i></span>Privacy/consent metadata for candidate information</li>
+                            <li><span class="fa-li"><i class="fas fa-search"></i></span>Every recommendation exposes its supporting evidence through <strong>SHOW ME WHY</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-history"></i></span>Audit trail for all transformations</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+
+            <!-- Layer 3 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 3:</span> Entity Resolution</h2>
+                </div>
+                <div class="concept-card stagger-1">
+                    <h3><i class="fas fa-compress-arrows-alt"></i> Resolving Complex Data</h3>
+                    <p>Normalize inconsistent names: job titles, skill phrases, courses, districts.</p>
+                    <div class="grid-3 mt-3">
+                        <div class="stat-box">
+                            <h4>Retain Raw Values</h4>
+                            <p>Alongside canonical interpretations</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Stored Metadata</h4>
+                            <p>Confidence, mapping method, validation state</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Human Validation</h4>
+                            <p>Aliases improve future interpretation</p>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-center badge">Concept of Reversible Intelligence</p>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Layer 4 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 4:</span> Multilingual Skill Intelligence</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="glow-card pink stagger-1">
+                        <div class="icon-circle"><i class="fas fa-language"></i></div>
+                        <h3>Supported Languages & Dialects</h3>
+                        <p>English, Hindi, Marathi, Hinglish, Maranglish, transliteration, informal technical language.</p>
+                    </div>
+                    <div class="glow-card blue stagger-2">
+                        <div class="icon-circle"><i class="fas fa-brain"></i></div>
+                        <h3>Skill Extraction & Routing</h3>
+                        <p>Extract candidate skills &rarr; map to canonical competencies &rarr; assign confidence.</p>
+                        <p><strong>Note:</strong> Route uncertain interpretations for review rather than silently forcing.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+
+            <!-- Layer 5 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 5:</span> Market Intelligence</h2>
+                </div>
+                <div class="grid-3 stagger-1">
+                    <div class="glow-card orange">
+                        <h3>Demand States</h3>
+                        <p><span class="chip">Strong</span> <span class="chip">Moderate</span> <span class="chip">Weak</span> <span class="chip">Increasing</span> <span class="chip">Declining</span> <span class="chip">Emerging</span></p>
+                    </div>
+                    <div class="glow-card green">
+                        <h3>Market Dynamics</h3>
+                        <p>Separate demand from market observability. Evidence fusion from multiple imperfect sources.</p>
+                    </div>
+                    <div class="glow-card purple">
+                        <h3>Evidence Bounds</h3>
+                        <p>Avoid claims of exact total job counts where evidence cannot support them.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Layer 6 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 6:</span> Supply + Outcome Intelligence</h2>
+                </div>
+                <div class="detail-card glass-card stagger-1">
+                    <div class="grid-2">
+                        <div>
+                            <h4>Supply Differentiation</h4>
+                            <p>Distinguish nominal supply from effective supply.</p>
+                            <p>States: <strong>Observed</strong>, <strong>Estimated</strong>, <strong>Unobserved</strong>.</p>
+                        </div>
+                        <div>
+                            <h4>Tracer Observations</h4>
+                            <p>3-, 6-, 12-month tracer observations. Track response selection risk.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2 mt-3">
+                        <div>
+                            <h4>Ranges & Sensitivity</h4>
+                            <p>Use ranges and sensitivity analysis for uncertainty.</p>
+                        </div>
+                        <div>
+                            <h4>Causality Principle</h4>
+                            <p>Never infer causality from training-to-employment leakage.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Layer 7 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 7:</span> Emerging Skill Intelligence</h2>
+                </div>
+                <div class="arch-flow stagger-1">
+                    <div class="arch-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">Extract technical phrases</div>
+                    </div>
+                    <div class="arch-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">Skillness Gate: distinguish competencies from administrative/working-condition phrases</div>
+                    </div>
+                    <div class="arch-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">Create unknown-competency candidates when taxonomies don't cover a phrase</div>
+                    </div>
+                    <div class="arch-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">Promotion Requirements: repetition, independence, persistence, technical relevance, qualification-gap evidence</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Layer 8 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 8:</span> Labour-Market Geography</h2>
+                </div>
+                <div class="grid-2 stagger-1">
+                    <div class="glow-card cyan">
+                        <h3>Geospatial Modeling</h3>
+                        <p>Model demand and supply across district boundaries.</p>
+                        <p>Represent: employer clusters, training centres, districts, corridors.</p>
+                    </div>
+                    <div class="glow-card yellow">
+                        <h3>Visibility Reality</h3>
+                        <p>Do not equate low online visibility with low actual demand.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Layer 9 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 9:</span> Alignment + Decision Engine</h2>
+                </div>
+                <div class="detail-card glass-card stagger-1">
+                    <h3>Decision Packet Generation</h3>
+                    <p>Compare: industry requirements, curriculum, training capacity, trainers, equipment.</p>
+                    <ul class="fa-ul mt-3 mb-3">
+                        <li><span class="fa-li"><i class="fas fa-box-open"></i></span><strong>Packet Content:</strong> evidence, mismatch, confidence, recommendation, success metric, review point</li>
+                        <li><span class="fa-li"><i class="fas fa-hands-helping"></i></span><strong>Support Actions:</strong> curriculum, capacity, trainer, equipment, candidate-guidance</li>
+                    </ul>
+                    <div class="badge">Measurable and reversible interventions</div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Layer 10 -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="gradient-text">Layer 10:</span> Outcome Feedback Loop</h2>
+                </div>
+                <div class="grid-3 stagger-1">
+                    <div class="glow-card green">
+                        <div class="icon-circle"><i class="fas fa-ruler-combined"></i></div>
+                        <h3>Measure</h3>
+                        <p>Measure post-intervention outcomes. Compare expected vs observed.</p>
+                    </div>
+                    <div class="glow-card blue">
+                        <div class="icon-circle"><i class="fas fa-comments"></i></div>
+                        <h3>Capture</h3>
+                        <p>Capture: employer/candidate/training feedback.</p>
+                    </div>
+                    <div class="glow-card purple">
+                        <div class="icon-circle"><i class="fas fa-sync-alt"></i></div>
+                        <h3>Iterate</h3>
+                        <p>Feed validated outcomes back into evidence, mappings, signals, planning.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Candidate Extension -->
+            <section class="section animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Candidate <span class="gradient-text">Extension</span></h2>
+                    <p class="section-subtitle">Downstream applications of SkillPulse intelligence</p>
+                </div>
+                <div class="grid-3 stagger-1">
+                    <div class="philosophy-card">
+                        <h3>Profile & Context</h3>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>Learning Intelligence</h3>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>Self-Discovery</h3>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>Career Exploration</h3>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>Real-World Problem Space</h3>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <i class="fas fa-bolt text-glow"></i> Skill<span class="gradient-text">Pulse</span>
+                    </div>
+                    <p class="footer-tagline">Evidence-backed intelligence for workforce development.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html">Home</a>
+                    <a href="architecture.html">Architecture</a>
+                    <a href="market-intelligence.html">Market Intelligence</a>
+                    <a href="alignment-engine.html">Alignment Engine</a>
+                    <a href="candidate-guidance.html">Candidate Guidance</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SkillPulse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JS -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

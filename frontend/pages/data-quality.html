@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Quality & Provenance Governance | SkillPulse</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Floating Theme Toggle (Sun & Moon) -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Light / Dark Mode">☀️</button>
+
+    <!-- Navigation Bar -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">⚡ SKILLPULSE</a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#architecture">Architecture</a>
+                <a href="../index.html#features">Modules</a>
+                <a href="alignment-engine.html">Alignment</a>
+                <a href="interventions.html">Interventions</a>
+                <a href="evidence-explorer.html">Evidence</a>
+                <a href="data-quality.html" class="active">Data Quality</a>
+            </div>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <div class="breadcrumb animate-on-scroll">
+                <a href="../index.html">Home</a> &gt; <a href="../index.html#architecture">Architecture</a> &gt; <span>Data Quality & Provenance</span>
+            </div>
+            <h1 class="page-title animate-on-scroll">
+                <span class="typewriter-text" data-texts='["Data Quality & Provenance", "Freshness & Audit Chains", "Graceful Failure Architecture"]'>Data Quality & Provenance</span>
+            </h1>
+            <p class="page-subtitle animate-on-scroll">
+                Ensuring every insight is grounded in freshness, origin traceability, explicit confidence intervals, candidate consent privacy controls, and transparent failure-state management.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section">
+        <div class="container">
+            
+            <!-- Quality Dimensions Grid -->
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Six Data Quality Pillars</h2>
+                <p class="section-subtitle">Every ingested observation is stamped with strict quality and provenance metadata</p>
+            </div>
+
+            <div class="grid-3 mb-5">
+                <div class="glow-card green animate-on-scroll stagger-1">
+                    <div class="card-icon"><i class="fas fa-clock fa-2x text-green"></i></div>
+                    <h3>Freshness & Decay</h3>
+                    <p>Observations decay in weight over time. Daily job postings carry higher immediate freshness than quarterly employer surveys or annual census reports.</p>
+                </div>
+
+                <div class="glow-card blue animate-on-scroll stagger-2">
+                    <div class="card-icon"><i class="fas fa-fingerprint fa-2x text-cyan"></i></div>
+                    <h3>Source Provenance</h3>
+                    <p>Every point references its immutable source ID, ingestion method (API, survey, crawl), collection agency, and timestamp.</p>
+                </div>
+
+                <div class="glow-card purple animate-on-scroll stagger-3">
+                    <div class="card-icon"><i class="fas fa-map-pin fa-2x text-purple"></i></div>
+                    <h3>Geographic Precision</h3>
+                    <p>Distinguishes whether an observation applies to an exact industrial PIN code, a district administrative zone, or a state-wide economic corridor.</p>
+                </div>
+
+                <div class="glow-card yellow animate-on-scroll stagger-4">
+                    <div class="card-icon"><i class="fas fa-percentage fa-2x text-yellow"></i></div>
+                    <h3>Confidence Scoring</h3>
+                    <p>Deterministic calculations score certainty from 0.0 to 1.0 based on cross-source agreement, sample size, and historical validation accuracy.</p>
+                </div>
+
+                <div class="glow-card pink animate-on-scroll stagger-5">
+                    <div class="card-icon"><i class="fas fa-user-shield fa-2x text-pink"></i></div>
+                    <h3>Privacy & Consent</h3>
+                    <p>Candidate-level tracking incorporates differential privacy, anonymized tracer records, and strict candidate consent governance under DPDP Act principles.</p>
+                </div>
+
+                <div class="glow-card cyan animate-on-scroll stagger-6">
+                    <div class="card-icon"><i class="fas fa-history fa-2x text-cyan"></i></div>
+                    <h3>Immutable Audit Trail</h3>
+                    <p>Every normalization transform, entity alias substitution, and alignment gap score is logged in an append-only verifiable audit ledger.</p>
+                </div>
+            </div>
+
+            <!-- Failure States Handling Section -->
+            <div class="glow-card animate-on-scroll mb-5">
+                <div class="card-icon" style="color: var(--neon-yellow);"><i class="fas fa-shield-virus fa-2x"></i></div>
+                <h3 class="gradient-text">Failure States & Implementation Honesty</h3>
+                <p class="mb-4">
+                    SkillPulse refuses to silently hallucinate answers when data is missing or degraded. The system implements explicit failure state behaviors:
+                </p>
+
+                <div class="grid-2">
+                    <div class="p-4" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-left: 3px solid var(--neon-yellow);">
+                        <h4 class="text-white"><i class="fas fa-server mr-2 text-yellow"></i> Source Unavailable</h4>
+                        <p class="small text-secondary mb-0">The system preserves the last recorded freshness timestamp and displays degraded confidence indicators rather than pretending the feed is live.</p>
+                    </div>
+
+                    <div class="p-4" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-left: 3px solid var(--neon-pink);">
+                        <h4 class="text-white"><i class="fas fa-question-circle mr-2 text-pink"></i> Low-Confidence Mapping</h4>
+                        <p class="small text-secondary mb-0">When an informal skill phrase has sub-threshold semantic matching confidence (&lt; 0.65), it is routed to human curriculum review rather than forced into an erroneous classification.</p>
+                    </div>
+
+                    <div class="p-4 mt-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-left: 3px solid var(--neon-cyan);">
+                        <h4 class="text-white"><i class="fas fa-balance-scale-right mr-2 text-cyan"></i> Conflicting Sources</h4>
+                        <p class="small text-secondary mb-0">If online job postings show a 40% surge while employer surveys report neutral demand, both divergent views are presented side-by-side with an explanatory divergence flag.</p>
+                    </div>
+
+                    <div class="p-4 mt-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-left: 3px solid var(--neon-green);">
+                        <h4 class="text-white"><i class="fas fa-user-times mr-2 text-green"></i> Tracer Non-Response</h4>
+                        <p class="small text-secondary mb-0">Graduates who do not respond to follow-up surveys are explicitly labeled <em>Unobserved</em>. The system strictly adheres to the principle: <strong>Missing ≠ Failure</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Validation & Golden Test Sets -->
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Automated Validation Suite</h2>
+                <p class="section-subtitle">Rigorous statistical checks verifying system integrity before recommendations deploy</p>
+            </div>
+
+            <div class="grid-3 mb-5">
+                <div class="glow-card blue animate-on-scroll stagger-1">
+                    <h4 class="text-white"><i class="fas fa-vial mr-2 text-cyan"></i> Golden Entity Test</h4>
+                    <p class="small text-secondary">A curated benchmark of 2,500 multilingual job titles and vernacular skill phrases continuously evaluates entity normalization accuracy.</p>
+                </div>
+
+                <div class="glow-card purple animate-on-scroll stagger-2">
+                    <h4 class="text-white"><i class="fas fa-compress-arrows-alt mr-2 text-purple"></i> Fusion Divergence Check</h4>
+                    <p class="small text-secondary">Synthetic injection of conflicting data streams verifies that evidence fusion dampens erratic outliers and computes truthful confidence penalties.</p>
+                </div>
+
+                <div class="glow-card green animate-on-scroll stagger-3">
+                    <h4 class="text-white"><i class="fas fa-route mr-2 text-green"></i> Corridor Invariance Test</h4>
+                    <p class="small text-secondary">Ensures that industrial demand crossing district borders (e.g., Pune to Chakan) is properly modeled as unified economic geography.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-tagline">
+            EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK
+        </div>
+        <p class="footer-copy">© 2024 SkillPulse | Built by Team Veyronix. Designed for Continuous Skill Planning.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

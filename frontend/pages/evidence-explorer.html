@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Explorer & Audit Provenance | SkillPulse</title>
+    <!-- Google Fonts (Plus Jakarta Sans & Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- Top Floating Theme Toggle (Sun & Moon) -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Light / Dark Mode">☀️</button>
+
+    <!-- Navigation Bar -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">⚡ SKILLPULSE</a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#architecture">Architecture</a>
+                <a href="../index.html#features">Modules</a>
+                <a href="alignment-engine.html">Alignment</a>
+                <a href="interventions.html">Interventions</a>
+                <a href="evidence-explorer.html" class="active">Evidence Explorer</a>
+                <a href="data-quality.html">Data Quality</a>
+            </div>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <div class="breadcrumb animate-on-scroll">
+                <a href="../index.html">Home</a> &gt; <a href="../index.html#architecture">Architecture</a> &gt; <span>Evidence Explorer & Provenance</span>
+            </div>
+            <h1 class="page-title animate-on-scroll">
+                <span class="typewriter-text" data-texts='["Evidence Explorer", "SHOW ME WHY Audit Trail", "Multi-Source Signal Provenance"]'>Evidence Explorer</span>
+            </h1>
+            <p class="page-subtitle animate-on-scroll">
+                Uncompromising auditability and transparency. Drill down from system-wide policy recommendations to the exact multi-source observations, confidence factors, and underlying assumptions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section">
+        <div class="container">
+            
+            <!-- SHOW ME WHY Live Interactive Drilldown -->
+            <div class="glow-card cyan animate-on-scroll mb-5">
+                <div class="card-icon" style="color: var(--neon-cyan);"><i class="fas fa-search-plus fa-2x"></i></div>
+                <h3 class="gradient-text">SHOW ME WHY — Audit Engine Demonstration</h3>
+                <p class="mb-4">
+                    SkillPulse never treats AI as an unquestionable black box. Every conclusion can be inspected back to raw observations, timestamped records, and entity normalization mappings.
+                </p>
+
+                <!-- Step-by-Step Provenance Flow for CNC Programming -->
+                <div class="flow-diagram">
+                    
+                    <div class="glow-card blue mb-4 animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <span class="badge" style="background: rgba(0, 191, 255, 0.2); color: var(--neon-blue); border: 1px solid var(--neon-blue);">LEVEL 1: RECOMMENDATION</span>
+                            <span class="mono-text small text-secondary">ID: REC_CNC_042</span>
+                        </div>
+                        <h4 class="mt-2 text-white">"Mandate 5-axis CNC programming modules in Pune & Nagpur ITI Machinist curricula"</h4>
+                        <p class="text-secondary small mb-0">Recommended by Alignment Engine with <strong>87% aggregate confidence</strong> based on tri-source convergence.</p>
+                    </div>
+
+                    <div class="text-center my-2 text-cyan"><i class="fas fa-arrow-down fa-2x"></i></div>
+
+                    <div class="glow-card purple mb-4 animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.2); color: var(--neon-purple); border: 1px solid var(--neon-purple);">LEVEL 2: FUSED SIGNALS</span>
+                            <span class="mono-text small text-secondary">Signal Convergence: High</span>
+                        </div>
+                        <h4 class="mt-2 text-white">Fused Demand State: STRONG (Trend: Accelerating)</h4>
+                        <div class="grid-3 mt-3">
+                            <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                                <strong class="text-cyan">Job Postings (Weight: 35%)</strong>
+                                <p class="small text-secondary mb-0">67% of machinist vacancies in Pune specify 5-axis/CAD-CAM</p>
+                            </div>
+                            <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                                <strong class="text-green">Employer Surveys (Weight: 25%)</strong>
+                                <p class="small text-secondary mb-0">23 of 30 surveyed auto-component manufacturers cite acute CNC shortage</p>
+                            </div>
+                            <div class="p-3" style="background: rgba(255,255,255,0.03); border-radius: 8px;">
+                                <strong class="text-yellow">Industry Roundtables (Weight: 20%)</strong>
+                                <p class="small text-secondary mb-0">Maharashtra Auto Consortium flagged transition to German 5-axis equipment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center my-2 text-purple"><i class="fas fa-arrow-down fa-2x"></i></div>
+
+                    <div class="glow-card green mb-4 animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <span class="badge" style="background: rgba(0, 255, 136, 0.2); color: var(--neon-green); border: 1px solid var(--neon-green);">LEVEL 3: ENTITY RESOLUTION & ALIASES</span>
+                            <span class="mono-text small text-secondary">Canonical ID: SKILL_001</span>
+                        </div>
+                        <h4 class="mt-2 text-white">Normalized Entity: CNC Programming (Computer Numerical Control)</h4>
+                        <p class="text-secondary small mb-2">Raw ingested phrases resolved across multilingual datasets:</p>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <span class="chip" style="background: rgba(0,255,136,0.1); border: 1px solid var(--neon-green); padding: 4px 10px; border-radius: 20px; font-size: 0.85rem;">"CNC Machining" (Confidence: 0.98)</span>
+                            <span class="chip" style="background: rgba(0,255,136,0.1); border: 1px solid var(--neon-green); padding: 4px 10px; border-radius: 20px; font-size: 0.85rem;">"सीएनसी प्रोग्रामिंग" (Hindi, Confidence: 0.94)</span>
+                            <span class="chip" style="background: rgba(0,255,136,0.1); border: 1px solid var(--neon-green); padding: 4px 10px; border-radius: 20px; font-size: 0.85rem;">"G-Code / M-Code Operating" (Confidence: 0.91)</span>
+                            <span class="chip" style="background: rgba(0,255,136,0.1); border: 1px solid var(--neon-green); padding: 4px 10px; border-radius: 20px; font-size: 0.85rem;">"सीएनसी ऑपरेटर काम" (Marathi, Confidence: 0.89)</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center my-2 text-green"><i class="fas fa-arrow-down fa-2x"></i></div>
+
+                    <div class="glow-card yellow animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <span class="badge" style="background: rgba(251, 191, 36, 0.2); color: var(--neon-yellow); border: 1px solid var(--neon-yellow);">LEVEL 4: AUDITABLE UNCERTAINTIES & ASSUMPTIONS</span>
+                            <span class="mono-text small text-secondary">Compliance: ISO/IEC 25012</span>
+                        </div>
+                        <h4 class="mt-2 text-white">Documented Model Boundary Conditions</h4>
+                        <ul class="text-secondary small mb-0 mt-2" style="list-style-type: square; padding-left: 20px;">
+                            <li><strong>Online Vacancy Observability:</strong> Web job postings capture tier-1 & tier-2 vendors; MSME informal hires are estimated via district employer associations.</li>
+                            <li><strong>Tracer Response Rate:</strong> 33% non-response is marked as <em>Unobserved</em> rather than assuming placement failure.</li>
+                            <li><strong>Geographic Boundary Leakage:</strong> 22% of trained Pune machinist graduates commute into the adjoining Raigad manufacturing corridor.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Ingested Evidence Categories Grid -->
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Four Distinct Evidence Streams</h2>
+                <p class="section-subtitle">How heterogeneous data sources remain distinct to preserve provenance</p>
+            </div>
+
+            <div class="grid-4 mb-5">
+                <div class="glow-card blue animate-on-scroll stagger-1">
+                    <div class="card-icon"><i class="fas fa-briefcase fa-lg text-cyan"></i></div>
+                    <h3>Labour-Market</h3>
+                    <p class="small text-secondary">Digital job postings, public employment registries, industry hiring announcements, and contractor calls.</p>
+                </div>
+
+                <div class="glow-card green animate-on-scroll stagger-2">
+                    <div class="card-icon"><i class="fas fa-university fa-lg text-green"></i></div>
+                    <h3>Training Capacity</h3>
+                    <p class="small text-secondary">ITI seat matrices, polytechnic enrollments, certified pass-outs, lab trainer ratios, and syllabus revisions.</p>
+                </div>
+
+                <div class="glow-card purple animate-on-scroll stagger-3">
+                    <div class="card-icon"><i class="fas fa-user-check fa-lg text-purple"></i></div>
+                    <h3>Outcomes & Tracers</h3>
+                    <p class="small text-secondary">3-, 6-, and 12-month post-training tracer observations, sector retention rates, and employer wage satisfaction.</p>
+                </div>
+
+                <div class="glow-card yellow animate-on-scroll stagger-4">
+                    <div class="card-icon"><i class="fas fa-sitemap fa-lg text-yellow"></i></div>
+                    <h3>Structural Data</h3>
+                    <p class="small text-secondary">National Occupational Standards (NOS), NCVET frameworks, district industrial park profiles, and census clusters.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-tagline">
+            EVIDENCE → INTELLIGENCE → ALIGNMENT → ACTION → FEEDBACK
+        </div>
+        <p class="footer-copy">© 2024 SkillPulse | Built by Team Veyronix. Designed for Continuous Skill Planning.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
