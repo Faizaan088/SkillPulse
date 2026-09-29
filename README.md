@@ -186,4 +186,5 @@ python test_system_qa.py
    - Click **Show me why** on any card to inspect the multi-step evidentiary lineage from raw observation to decision gate.
 #   S K I L L P U L S E  
  #   S K I L L P U L S E  
+ #   S K I L L P U L S E  
  
