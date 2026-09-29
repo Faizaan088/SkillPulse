@@ -1142,6 +1142,8 @@ function toggleFilters() {
   p.classList.toggle('open', now);
   p.setAttribute('aria-hidden', String(!now));
   $('#filter-toggle').setAttribute('aria-expanded', String(now));
+  const mobFilt = $('#mobile-filter-toggle');
+  if (mobFilt) mobFilt.setAttribute('aria-expanded', String(now));
   $('#scrim').hidden = !now;
 }
 
@@ -1150,6 +1152,13 @@ function closeSidebars() {
   $('#filter-panel').setAttribute('aria-hidden','true');
   $('.sidebar').classList.remove('open');
   $('#filter-toggle').setAttribute('aria-expanded','false');
+  const mobFilt = $('#mobile-filter-toggle');
+  if (mobFilt) mobFilt.setAttribute('aria-expanded','false');
+  const mobNav = $('#mobile-nav-toggle');
+  if (mobNav && window.innerWidth <= 900) {
+    mobNav.setAttribute('aria-expanded','false');
+    mobNav.innerHTML = '☰';
+  }
   $('#scrim').hidden=true;
 }
 
@@ -1487,6 +1496,17 @@ boot();
       document.body.appendChild(toggle);
     }
 
+    // Set initial icon and aria state cleanly on load
+    if (isMobile()) {
+      sidebar.classList.remove('open');
+      toggle.innerHTML = '☰';
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      const isCollapsed = document.body.classList.contains('nav-collapsed');
+      toggle.innerHTML = isCollapsed ? '☰' : '×';
+      toggle.setAttribute('aria-expanded', String(!isCollapsed));
+    }
+
     function closeSidebar() {
       if (isMobile()) {
         sidebar.classList.remove('open');
@@ -1620,33 +1640,12 @@ boot();
       }
 
       mobileFilterButton.setAttribute('aria-expanded', 'false');
-
-      if (filterToggle) {
-        filterToggle.setAttribute('aria-expanded', 'false');
-      }
     }
 
     mobileFilterButton.addEventListener('click', () => {
-      if (filterPanel.classList.contains('open')) {
-        closeFilters();
-      } else {
-        openFilters();
-      }
+      toggleFilters();
+      mobileFilterButton.setAttribute('aria-expanded', String(filterPanel.classList.contains('open')));
     });
-
-    if (filterToggle) {
-      filterToggle.addEventListener('click', () => {
-        if (filterPanel.classList.contains('open')) {
-          closeFilters();
-        } else {
-          openFilters();
-        }
-      });
-    }
-
-    if (scrim) {
-      scrim.addEventListener('click', closeFilters);
-    }
 
     document.addEventListener('click', event => {
       if (event.target.closest('[data-close-filters]')) {

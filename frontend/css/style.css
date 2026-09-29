@@ -1181,11 +1181,16 @@ p, li, td, th, span, div, label, input, select, textarea, button {
     padding: 20px 24px;
     gap: 12px;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    transition: clip-path 0.35s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    transition: clip-path 0.35s ease-in-out, opacity 0.25s ease;
     border-bottom: 2px solid var(--neon-cyan);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
   .nav-links.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   /* Single Column Layouts on Mobile */
